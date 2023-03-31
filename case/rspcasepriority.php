@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -16,14 +16,14 @@ if(!$con){
     mysql_select_db($dbname, $con);
     function getid(){
     $caseid ="select count(id) as id from CasePriority";
-    $results=mysql_query($caseid); 
-    $rows=mysql_fetch_array($results);
+    $results=mysqli_query($con,$caseid); 
+    $rows=mysqli_fetch_array($results);
     $row=$rows[0]+1;
     return $row;
   }
   //$catid=getid();
     $query="insert into CasePriority values( ".getid().",'$_GET[prname]')";
-    if(!mysql_query($query))
+    if(!mysqli_query($con,$query))
         echo mysql_error ();
     else
         echo "new case priority added seccefully";

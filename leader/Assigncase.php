@@ -5,8 +5,8 @@ $id=$_GET['caseid'];
   session_start();
   $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
-    $caserow=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $caserow=  mysqli_fetch_array($result);
     echo "<table width=80% id=tab>
         <tr align=right><td><table><tr><td id=ass>Assign To".userselectot($type).
         "</td><td onclick=Assigncase('mainb','leader/save/saveassigment.php',$id)><div id=button align=center><b>Save</b></div></td><td></td>
@@ -40,10 +40,10 @@ $id=$_GET['caseid'];
 </table>";
     function userselectot($team){
         $sql="select * from users where Team='$team'";
-        $result=  mysql_query($sql);
+        $result=  mysqli_query($con,$sql);
         $rs="<select id=userid><option id='0'>select users</option>";
         
-        while($row= mysql_fetch_array($result))
+        while($row= mysqli_fetch_array($result))
         {
         $rs=$rs."<option value=$row[0]>$row[2]-$row[3]</option>";
             
@@ -54,16 +54,16 @@ $id=$_GET['caseid'];
   function getcurrntload($team){
     
     $query="select * from users where Team='$team'";
-    $result=  mysql_query($query);
+    $result=  mysqli_query($con,$query);
     //echo"<table border=1><tr><td>";
     $rs="<table id=tab><tr><td>Name</td><td>CurrentLoad</td>";
     
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         
      $rs=$rs."<tr id='tr1' onclick=getuser('leader/selectusser.php?team=$team','ass',$row[0])><td>$row[2]-$row[3]</td>";
      $query1="select count(userId) as CurrentLoad from AssignedCase where( (userid='$row[0]') and (CaseStatus=0)) group by userid";
-     $result1=  mysql_query($query1);
-     $row1=  mysql_fetch_array($result1);
+     $result1=  mysqli_query($con,$query1);
+     $row1=  mysqli_fetch_array($result1);
     if($row1)
          $rs=$rs."<td>$row1[0]</td></tr></a>";
     else

@@ -14,8 +14,8 @@ getforms($id);
        
 function getforms($id){
     $sql="select * from caselist where caseid=$id";
-    $result=  mysql_query($sql);
-    $row=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$sql);
+    $row=  mysqli_fetch_array($result);
     
     $rs="<table>
         <form>
@@ -69,9 +69,9 @@ function getforms($id){
 function getselection($tablename)
                 {
                 $sql="select * from $tablename";
-                $result=  mysql_query($sql);
+                $result=  mysqli_query($con,$sql);
                 $optcat="<option value='0'>Please select one</option>";
-                while($row=  mysql_fetch_array($result))
+                while($row=  mysqli_fetch_array($result))
                     {
                     $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
                     }

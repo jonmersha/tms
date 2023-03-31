@@ -1,7 +1,7 @@
 <?php
 require_once '../config/index.php';
 $sql="select * from users where userid=$_GET[userid]";
-$result=  mysql_query($sql);
+$result=  mysqli_query($con,$sql);
 // $_GET[userid];
 
 
@@ -19,9 +19,9 @@ $result=  mysql_query($sql);
                     <table width="100%">
                         <?php
                         $query ="SELECT * FROM PRSet WHERE userid = $_GET[userid]";
-                        $result=  mysql_query($query);
+                        $result=  mysqli_query($con,$query);
                         $sw=0;
-                        while($row= mysql_fetch_array($result)){
+                        while($row= mysqli_fetch_array($result)){
    if($sw==0){
        $tr="tr1";
        $sw=1;
@@ -47,10 +47,10 @@ $result=  mysql_query($sql);
                         <?php
                         $sw=0;
                         $query="select * from app_prmision";
-                        $result=  mysql_query($query);
-                        while($row=mysql_fetch_array($result)){
+                        $result=  mysqli_query($con,$query);
+                        while($row=mysqli_fetch_array($result)){
                             $sql="select * from PRSet where userid=$_GET[userid] and Prmition='$row[0]'";
-                            $results=mysql_query($sql);
+                            $results=mysqli_query($con,$sql);
                             
                           
                             

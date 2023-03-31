@@ -3,22 +3,22 @@
 
 require_once '../../config/index.php';
      $getmaxid="SELECT max(id) from CasePriority";
-     $maxresult=mysql_query($getmaxid);
-     $rowmax=  mysql_fetch_array($maxresult);
+     $maxresult=mysqli_query($con,$getmaxid);
+     $rowmax=  mysqli_fetch_array($maxresult);
      $idmax=$rowmax[0]+1;
      if($_GET[order]=="insert"){
 if($_GET[name]!=""){
     
     
     $query="insert into CasePriority values($idmax,'$_GET[name]')";
-    if(!mysql_query($query)){
+    if(!mysqli_query($con,$query)){
         $message=  mysql_error();
     }
      }}
 if($_GET[order]=="delete")
 {
     $query="delete from CasePriority where id=$_GET[prid]";
-    if(!mysql_query($query)){
+    if(!mysqli_query($con,$query)){
         $message=  mysql_error();
     }
 }
@@ -35,11 +35,11 @@ if($_GET[order]=="delete")
 <div><?php echo $message; ?></div><hr>
 <?php
 $query="select * from CasePriority";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $swicher=0;
 echo"<table>
     <tr bgcolor=gray><td>priorityID</td><td>Priority</td><td></td></tr>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         if($swicher==0){
             $swicher=1;
             $id="tr1";

@@ -28,7 +28,7 @@ LIMIT 0 , 30"
 ;
     $result=  mysql_query($query);
     echo"<table valign='top'>";
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
     {
         echo"
     <tr>

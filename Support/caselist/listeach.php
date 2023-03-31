@@ -11,7 +11,7 @@ mycase($status);
 function mycase($rqtype){
     $swicher=0;
    $sql="select caseid,date,userid from actions where actionperformed='create'";
-   $result=  mysql_query($sql);
+   $result=  mysqli_query($con,$sql);
    echo"<table width=100%>
                 <tr>
                 <td id=tdh width=200><b>Title</b></td>
@@ -22,10 +22,10 @@ function mycase($rqtype){
 while($row=mysql_fetch_array($result))
        {
         $userqery="SELECT f_name,m_name FROM `users`  where userid=$row[2]";
-        $userresult=  mysql_query($userqery);
+        $userresult=  mysqli_query($con,$userqery);
         $urow=  mysql_fetch_array($userresult);
         $csql="SELECT * FROM `caselist` where caseid=$row[0]";
-        $rs=  mysql_query($csql);
+        $rs=  mysqli_query($con,$csql);
         $crow=  mysql_fetch_array($rs);
        if($swicher==0){
            $trid='tr1';

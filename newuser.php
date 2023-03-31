@@ -1,22 +1,24 @@
 <?php
 require_once("config/index.php");
-$con=  mysql_connect($host,$username,$password);
+$con = mysqli_connect($host,$username,$password);
 
 if(!$con)
     {
-    
     echo mysql_error();
    }
-  mysql_select_db($dbname, $con);
+
+  mysqli_select_db($con,$dbname);
     //session_start();
   function getselection($tablename){
-    $sql="select * from $tablename";
-    $result=  mysql_query($sql);
+    $sql="select * from usercatagory";
+    $result=  mysqli_query($con,$sql);
     $optcat="<option value='0'>Please select one</option>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
     }
-return $optcat;}
+return $optcat;
+
+}
 
 ?>
 

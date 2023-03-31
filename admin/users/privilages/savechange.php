@@ -10,7 +10,7 @@ $updatequery="update users set username='$_GET[loginname]',"
                                 . "privatemail='$_GET[emailp]',"
                                 . "tele_mob='$_GET[mob]'"
         . "where(userid=$_GET[userid])";
-if(!mysql_query($updatequery)){
+if(!mysqli_query($con,$updatequery)){
     echo mysql_error();
 }
 else
@@ -19,8 +19,8 @@ else
 
 
 $updated="select * from users where(userid=$_GET[userid]) ";
-$result=  mysql_query($updated);
-$row=  mysql_fetch_array($result);
+$result=  mysqli_query($con,$updated);
+$row=  mysqli_fetch_array($result);
 
 }
 

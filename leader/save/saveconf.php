@@ -12,8 +12,8 @@ $id=$_GET['caseid'];
   session_start();
  // $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
-    $caserow=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $caserow=  mysqli_fetch_array($result);
     echo"<table width=80% id=tab>
         <tr align=right><td><table><tr> "
             . "<td onclick=loadXMLDoc('notif','leader/not.php')><div id=button align=center><b>Back to list</b></div></td>

@@ -14,7 +14,7 @@ if(!$con){
         echo "<option selected='true'>Please select User</option>";
     else
         echo "<option selected='true'>Please select User</option>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         if($_GET[id]==$row[0]){
             echo "<option selected='true' value=$row[0]>$row[2]-$row[3]</option>";
         }

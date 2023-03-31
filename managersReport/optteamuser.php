@@ -9,9 +9,9 @@ function getselection(){
         $sql="select * from users";
     }
     
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $optcat="<option value='All'>All</option>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         $optcat=$optcat."<option value='$row[0]'>$row[2] $row[3]</option>";
     }
     return $optcat;

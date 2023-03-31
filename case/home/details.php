@@ -27,9 +27,9 @@ caselist.caseid ='$_GET[caseid]'
 )
 LIMIT 0 , 30"
 ;
-    $result=  mysql_query($query);
+    $result=  mysqli_query($con,$query);
     echo"<table valign='top'>";
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
     {
         echo"
     <tr>

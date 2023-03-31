@@ -1,11 +1,24 @@
 <?php
+
 session_start();
+
+
+try {
+    //code...
+    //require_once("/config/index.php");
+} catch (\Throwable $th) {
+    //throw $th;
+    echo $th;
+}
+
+
 class newcase {
+
     function AddnewCase($date){
         
         $caseId=new newcase();
         $id=$caseId->Getid();
-        if($_GET[cat]==""||$_GET[pr]==""||$_GET[caset]==""||$_GET[cased]==""||$_GET[rq]=="")
+        if($_GET['cat']==""||$_GET['pr']==""||$_GET['caset']==""||$_GET['cased']==""||$_GET['rq']=="")
             {
         return "seme mandatory fields are empty";
         
@@ -16,7 +29,7 @@ $sql="INSERT INTO caselist
         VALUES ($id, '$_GET[caset]', '$_GET[cased]', 'Not Assined', '$_GET[rq]', '$_GET[dept]', '$_GET[ext]', '$_GET[pr]', '$_GET[cat]')";
 //echo $sql;
 
-if(!mysql_query($sql)){
+if(!mysqli_query($con,$sql)){
 echo mysql_error();
 }
 else{
@@ -24,16 +37,16 @@ else{
     $actioncall=new newcase();
     return $actioncall->Actions($action,$id,$_SESSION['userid']);
     
-   
 }
 
 }
     
-  function Getid()
+  function Getid($con)
     {
+        
         $caseid ="select max(caseid) as id from caselist";
-        $results=mysql_query($caseid); 
-        $rows=mysql_fetch_array($results);
+        $results=mysqli_query($con,$caseid); 
+        $rows=mysqli_fetch_array($results);
         $row=$rows[0]+1;
         return $row;
     }
@@ -41,7 +54,7 @@ else{
    function Actions($Action,$id,$performer){
          $dates= date("Y-m-d h:i:s");
          $query="insert into actions values($id,'$performer','$Action','$dates')";
-         if(!mysql_query($query)){
+         if(!mysqli_query($con,$query)){
          return  mysql_error();
          
          }
@@ -55,7 +68,7 @@ function CaseAssignment($id,$reciver,$assigner)
                 {
                $dates= date("Y-m-d h:i:s");
                 $sql="insert into AssignedCase values($id,$reciver,'$dates',$assigner,0)";
-                if(!mysql_query($sql))
+                if(!mysqli_query($con,$sql))
                         return mysql_error();
                 else
                      {
@@ -73,7 +86,7 @@ function CaseAssignment($id,$reciver,$assigner)
     function ResolveCase($id,$reportedto,$description){
         $dates= date("Y-m-d h:i:s");
         $query="insert into ResolvedReport values('$id','$description','$reportedto',0,'$dates')";
-        if(!mysql_query($query)){
+        if(!mysqli_query($con,$query)){
             return mysql_error();
         }
         else{
@@ -86,14 +99,14 @@ function CaseAssignment($id,$reciver,$assigner)
     }
     function updatecasestatus($caseid,$appvalue){
         $query="update caselist set `status`='Assined' where `caseid`=$caseid";
-        if(mysql_query($query)){
+        if(mysqli_query($con,$query)){
             return mysql_error();
         }        
     }
     function clos($id,$confirmer,$resolver,$deskription)
     {    $dates= date("Y-m-d h:i:s");
         $query="insert into closeReport values('$id','$confirmer','$resolver','$deskription','$dates')";
-        if(!mysql_query($query)){
+        if(!mysqli_query($con,$query)){
             return mysql_error();
         }
         else{
@@ -108,7 +121,7 @@ function CaseAssignment($id,$reciver,$assigner)
     function editeCase($id,$editor,$description){
         $dates= date("Y-m-d h:i:s");
         $query="insert into caseedite value($id,$editor,'$description','$dates')";
-        if(!mysql_query($query)){
+        if(!mysqli_query($con,$query)){
             mysql_error();
         }
         else{

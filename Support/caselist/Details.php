@@ -7,7 +7,7 @@ $id=$_GET['id'];
   session_start();
   $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
+    $result=  mysqli_query($con,$query);
     $caserow=  mysql_fetch_array($result);
     echo"<table width=100%>
         <tr><td>

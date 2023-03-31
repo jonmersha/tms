@@ -1,27 +1,31 @@
 <?php
-
    require_once("../case/classes/newcase.php");
-   require_once("../config/index.php");
-$con=  mysql_connect($host,$username,$password);
-session_start();
+   
+try {
+    require_once("../config/index.php");
+
+   $caseid=new newcase();
+ $id=$caseid->Getid($con);
+  
+    session_start();
 if(!$con)
     {
-    
     echo mysql_error();
    }
-  mysql_select_db($dbname, $con);
   
-  $caseid=new newcase();
-  $id=$caseid->Getid($con);
 
   if($id<100)
       $nid="0000"."$id";
   else
      $nid="000"."$id";
   
-getforms($nid);
-       
-function getforms($id){
+getforms($con,$nid);
+   
+} catch (\Throwable $th) {
+    echo $th;
+}
+
+function getforms($con,$id){
     $rs="<table>
         <form>
         <tr width='500px'> 
@@ -33,16 +37,18 @@ function getforms($id){
                             <label><h1>".$id."</h1></label>
                             <label>Priority</label><br/>
                             <select id='pr'>".
-                                    getselection('CasePriority').
+                                    getselection($con,'CasePriority').
                             "</select><br/>
                             <label>Category</label><br/>
                             <select id='cat' >"
-                              .getselection('usercatagory').
+                              .
+                              getselection($con,'usercatagory').
                              "</select><br/><br/><hr>
                             <div id='divid' align='center'>
                             <label>Service Requester</label><br/><input type='text' id='rq' /><br/> 
                     <label>Department</label><br/>
-                    <select id='dept'>".getselectionp('workunit').                
+                    <select id='dept'>".
+                     getselectionp($con,'workunit').                
                             "</select><br/>
                     <label>Extension</label><br/>
                      <input type='text' id='ext' /><br/><br/></div>
@@ -70,20 +76,22 @@ function getforms($id){
    echo $rs;
 
 }
-function getselection($tablename){
+function getselection($con,$tablename){
+    
     $sql="select * from $tablename";
-    $result=  mysql_query($sql);
+
+     $result = mysqli_query($con,$sql);
     $optcat="<option value='0'>Please select one</option>";
-    while($row=  mysql_fetch_array($result)){
-        $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
-    }
+     while($row=  mysqli_fetch_array($result)){
+         $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
+     }
     return $optcat;
 }
-function getselectionp($tablename){
+function getselectionp($con,$tablename){
     $sql="select * from $tablename ORDER BY `workunit`.`name` ASC";
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $optcat="<option value='0'>Please select one</option>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
     }
     return $optcat;

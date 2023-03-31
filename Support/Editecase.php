@@ -14,8 +14,8 @@ if(!$con)
   session_start();
   $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
-    $caserow=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $caserow=  mysqli_fetch_array($result);
     echo"<table width=80% id=tab>
         <tr align=right>
         <td>

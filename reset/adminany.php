@@ -1,4 +1,4 @@
-<form action='menu/adminanysave.php' method="GET">
+<form action='save.php' method="GET">
 <table>
             <tr>
               

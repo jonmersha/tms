@@ -1,12 +1,11 @@
 <?php
 session_start(); // This starts the session which is like a cookie, but it isn't saved on your hdd and is much more secure.
 require_once("config/index.php");
-$con=  mysql_connect($host,$username,$password); // Connect to the MySQL server
 if(!$con){
     echo mysql_error();
     
 }
-    mysql_select_db($dbname, $con);//Select your Database
+  
 if(isset($_SESSION['loggedin']))
 {
    header("location:index.php");   
@@ -14,39 +13,54 @@ if(isset($_SESSION['loggedin']))
 // That bit of code checks if you are logged in or not, and if you are, you can't log in again!
 if(isset($_POST['submit']))
 {
-   $name = mysql_real_escape_string($_POST['username']); // The function mysql_real_escape_string() stops hackers!
-   $pass = mysql_real_escape_string($_POST['password']); // We won't use MD5 encryption here because it is the simple 
-    $pass=md5($pass);
-  $mysql = mysql_query("SELECT * FROM users WHERE username = '{$name}' AND pass = '{$pass}'"); // This code uses MySQL to get all of the users in the database with that username and password.
- if(mysql_num_rows($mysql) < 1)
-   {
-     $messagepass = "Password was probably incorrect!<br>";
+  // $name = mysql_real_escape_string($_POST['username']); // The function mysql_real_escape_string() stops hackers!
+   //$pass = mysql_real_escape_string($_POST['password']); // We won't use MD5 encryption here because it is the simple 
+   
+   try {
+    //code...
+    $name=$_POST['username'];
+    $pass=$_POST['password'];
 
-   // header("location:mainpage");
-   } // That snippet checked to see if the number of rows the MySQL query was less than 1, so if it couldn't find a row, the password is incorrect or the user doesn't exist!
-   else{
-        $result=mysql_query($mysql,$con);
-        //$row=  mysql_fetch_array($result);
-        
-        $_SESSION['loggedin'] = "YES"; // Set it so the user is logged in!
-        $_SESSION['name'] = $name; // Make it so the username can be called by $_SESSION['name']
-        $query="select * from users where username='{$name}'";
-        $result=  mysql_query($query,$con);
-        $row=mysql_fetch_array($result);
-        $_SESSION['userid']=$row[0];
-        $_SESSION['usernama']=$row[1];
-        $_SESSION['Team']=$row[5];
-        //$_SESSION['Type']=$row[6];
-        $_SESSION['fname']=$row[2];
-        $_SESSION['mname']=$row[3];
-        $_SESSION["path"]='';
-        if($row[11]==0){
-            session_destroy();
-            $messagepass="The users are not confirmed by admin";
-        }
-        else
-        header("location:index.php"); 
-}
+    $pass=md5($pass);
+    echo $pass;
+    $mysql = mysqli_query($con,"SELECT * FROM users WHERE username = '{$name}' AND pass = '{$pass}'"); // This code uses MySQL to get all of the users in the database with that username and password.
+ 
+    if(mysqli_num_rows($mysql) < 1)
+    {
+      $messagepass = "Password was probably incorrect!<br>";
+ 
+    // header("location:mainpage");
+    } // That snippet checked to see if the number of rows the MySQL query was less than 1, so if it couldn't find a row, the password is incorrect or the user doesn't exist!
+    else{
+         $result=mysqli_query($con,"SELECT * FROM users WHERE username = '{$name}' AND pass = '{$pass}'");
+         $row=  mysqli_fetch_array($result);
+         
+         $_SESSION['loggedin'] = "YES"; // Set it so the user is logged in!
+         $_SESSION['name'] = $name; // Make it so the username can be called by $_SESSION['name']
+         $query="select * from users where username='{$name}'";
+         $result=  mysqli_query($con,$query);
+         $row=mysqli_fetch_array($result);
+         $_SESSION['userid']=$row[0];
+         $_SESSION['usernama']=$row[1];
+         $_SESSION['Team']=$row[5];
+         //$_SESSION['Type']=$row[6];
+         $_SESSION['fname']=$row[2];
+         $_SESSION['mname']=$row[3];
+         $_SESSION["path"]='';
+ 
+         if($row[11]==0){
+             session_destroy();
+             $messagepass="The users are not confirmed by admin";
+         }
+         else
+         header("location:index.php"); 
+ }
+
+   } catch (\Throwable $th) {
+    //throw $th;
+    echo $th;
+   }
+   
  // Kill the script here so it doesn't show the login form after you are logged in!
 } // That bit of code logs you in! The "$_POST['submit']" bit is the submission of the form down below VV
 ?>

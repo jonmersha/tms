@@ -4,7 +4,7 @@ require_once '../../function/allfunc.php';
 function getCases($st){
     
     $sql="SELECT * FROM caselist where Catagory='$_GET[catagory]' and  status='$st' order by caseid desc";// 
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $rss="<table width=100% >
                 <tr id=tdt>
                 <td id=tdh><b>Case id</b></td>
@@ -14,7 +14,7 @@ function getCases($st){
                 <td id=tdh><b>Department</td></tr>";
     
     $sw=0;
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         
         if($sw==0)
         {
@@ -29,7 +29,7 @@ function getCases($st){
             $id="tr2";
         }
         
-        //$case=  mysql_fetch_array($caseres);
+        //$case=  mysqli_fetch_array($caseres);
         
         $rss=$rss."<tr id=$id onclick=loadXMLDoc('mainb','comm/case/detail.php?caseid=$row[0]&source=comm/managers/team.php?catagory=$_GET[catagory]')>
                     <td >$row[0]</td>
@@ -54,7 +54,7 @@ function getCases($st){
                     <?php 
                     function getnumber($st){
                         $sql="SELECT * FROM caselist where Catagory='$_GET[catagory]' and  status='$st'";
-                        $result=  mysql_query($sql);
+                        $result=  mysqli_query($con,$sql);
                     return mysql_num_rows($result);}
                     echo"<tr id=tr1><td> Cases Not yet assined</td><td> : ".getnumber('Not Assined')."</td></tr>";
                     echo"<tr id=tr2><td> Active Cases</td><td> : ".getnumber('Assined')."</td></tr>";

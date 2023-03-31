@@ -1,15 +1,15 @@
 <?php
 require_once '../../config/index.php';
 $getmaxid="SELECT max(cod) from workunit";
-  $maxresult=mysql_query($getmaxid);
-  $rowmax=  mysql_fetch_array($maxresult);
+  $maxresult=mysqli_query($con,$getmaxid);
+  $rowmax=  mysqli_fetch_array($maxresult);
   $idmax=$rowmax[0]+1;
 if($_GET[order]=='insert'){
     $message="Some fields are empty";
 if($_GET[name]!=""||$_GET[loc]!=""){
   $sql="insert into workunit values($idmax,'$_GET[name]','$_GET[loc]',$_GET[ext])";
   //echo $sql;
-  if(!mysql_query($sql)){
+  if(!mysqli_query($con,$sql)){
   $message=mysql_error ();}
   else{
   $message=mysql_affected_rows()."Department registered succefully";}
@@ -19,7 +19,7 @@ if($_GET[name]!=""||$_GET[loc]!=""){
   }
 if($_GET[order]=='delete'){
     $query="delete from workunit where cod=$_GET[cod]";
-    if(!mysql_query($query)){
+    if(!mysqli_query($con,$query)){
     $message= mysql_error();
 }
 }
@@ -37,12 +37,12 @@ if($_GET[order]=='delete'){
 
 <?php
 $query="SELECT * FROM `workunit`";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $swicher=0;
 echo
 "<table> 
     <tr id=tdt><td id=tdh>Process code</td><td id=tdh>Process Name</td><td id=tdh>Location</td> <td id=tdh> extention</td><td id=tdh></></tr>";
-while($row=  mysql_fetch_array($result)){
+while($row=  mysqli_fetch_array($result)){
     if($swicher==0){
         $id="tr1";
         $swicher=1;}

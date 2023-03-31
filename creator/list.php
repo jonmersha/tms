@@ -11,7 +11,7 @@ function mycase($rqtype){
     }
     $swicher=0;
    $sql="select caseid,date from actions where (userid={$_SESSION['userid']} and actionperformed='create')";
-   $result=  mysql_query($sql);
+   $result=  mysqli_query($con,$sql);
    $data="
        <td><table width=100% id=tab><tr><td>
             <div  onclick=loadXMLDoc('mainb','creator/listeach.php?status=$rqtype')>$label</div>
@@ -22,11 +22,11 @@ function mycase($rqtype){
                 <td id=tdh><b>Requester</td>
                 <td id=tdh><b>Department</td>
                 <td id=tdh><b>Team</td><td id=tdh><b>Assined to</td></tr>";
-while($row=mysql_fetch_array($result))
+while($row=mysqli_fetch_array($result))
        {
         $csql="SELECT * FROM `caselist` where (caseid=$row[0] and status='$rqtype')";
-        $rs=  mysql_query($csql);
-        $crow=  mysql_fetch_array($rs);
+        $rs=  mysqli_query($con,$csql);
+        $crow=  mysqli_fetch_array($rs);
        if(mysql_num_rows($rs)>0){$datas=1; }
         
         

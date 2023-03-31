@@ -5,17 +5,17 @@ if($_GET[caseid]!="")
     //echo "$_GET[caseid]";
     $query="SELECT * FROM `caselist` where caseid=$_GET[caseid]";
     !$result;
-    if(!$result=mysql_query($query)){
+    if(!$result=mysqli_query($con,$query)){
         echo mysql_error();
     }
  else {
    // echo "rew selected";
     if(mysql_num_rows($result)>0)
         {
-        $row=  mysql_fetch_array($result);
+        $row=  mysqli_fetch_array($result);
         if($row[8]==$_GET[team]){
             $sql="update caselist set status='Not assined' where caseid=$_GET[caseid]";
-            if(!mysql_query($sql)){
+            if(!mysqli_query($con,$sql)){
                 echo mysql_error();
             }
             else
@@ -23,7 +23,7 @@ if($_GET[caseid]!="")
                 echo "casechanged with succe";
             }
             $sql="delete from ResolvedReport where Caseid=$_GET[caseid]";
-            if(!mysql_query($sql)){
+            if(!mysqli_query($con,$sql)){
                 echo mysql_error();
             }
             else
@@ -31,7 +31,7 @@ if($_GET[caseid]!="")
                 echo "<br>Case Removed From Resolve Entry";
             }
             $sql="delete from AssignedCase where CaseId=$_GET[caseid]";
-            if(!mysql_query($sql)){
+            if(!mysqli_query($con,$sql)){
                 echo mysql_error();
             }
             else
@@ -39,7 +39,7 @@ if($_GET[caseid]!="")
                 echo "<br>Case removed from Assignment History";
             }
             $sql="delete from closeReport where caseid=$_GET[caseid]";
-            if(!mysql_query($sql)){
+            if(!mysqli_query($con,$sql)){
                 echo mysql_error();
             }
             else
@@ -47,7 +47,7 @@ if($_GET[caseid]!="")
                 echo "<br> case Removed from Closed list";
             }
             $sql="DELETE FROM `actions` WHERE `caseid` = $_GET[caseid] AND `actionperformed` = 'Resolve'";
-            if(!mysql_query($sql)){
+            if(!mysqli_query($con,$sql)){
                 echo mysql_error();
             }
             else

@@ -30,19 +30,19 @@ echo"<br><table width=100% id=tab1> "
 
 //Get All users from Userlist
 $query="SELECT * from users";
-if(!mysql_query($query))
+if(!mysqli_query($con,$query))
     {
     echo mysql_error();
     
     }
     $swicher=0;
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 //echo mysql_num_rows($result);
-while($users=  mysql_fetch_array($result)){
+while($users=  mysqli_fetch_array($result)){
     
     $cont="SELECT * from AssignedCase where userId=$users[0] and CaseStatus=$_GET[status]";
-    if(!mysql_query($cont)){echo mysql_error();}
-    $result1=mysql_query($cont);
+    if(!mysqli_query($con,$cont)){echo mysql_error();}
+    $result1=mysqli_query($con,$cont);
     $rownumber=  mysql_num_rows($result1);
     
     echo "<table width=100%>"
@@ -72,14 +72,14 @@ while($users=  mysql_fetch_array($result)){
     
     
     
-    while($caseid= mysql_fetch_array($result1))
+    while($caseid= mysqli_fetch_array($result1))
           {
         //get case details
         $sqlcase="SELECT * FROM caselist where caseid=$caseid[0]";
          
-        if(!mysql_query($sqlcase)){echo mysql_error();}
-        $caseresult=mysql_query($sqlcase);
-        $caserow=  mysql_fetch_array($caseresult);
+        if(!mysqli_query($con,$sqlcase)){echo mysql_error();}
+        $caseresult=mysqli_query($con,$sqlcase);
+        $caserow=  mysqli_fetch_array($caseresult);
         $creator=  GetCreator($caseid[0]);
         $assigner=  GetAssigner($caseid[0]);
         

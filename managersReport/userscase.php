@@ -20,14 +20,14 @@ if($_GET[user]=='All')
             {
             //get users tiems
             $query="SELECT * FROM `usercatagory`";
-            $result=  mysql_query($query);
-            while($rowstatus=mysql_fetch_array($result))
+            $result=  mysqli_query($con,$query);
+            while($rowstatus=mysqli_fetch_array($result))
                 {
                    //for each team displayget users list
                 $queryu="SELECT * FROM `users` where `users`.`Team`='$rowstatus[1]'";
-                $resultu=  mysql_query($queryu);
+                $resultu=  mysqli_query($con,$queryu);
                 echo "<table border=1 width=100%><tr><td>$rowstatus[1]</td></tr>";
-                while($rowu=  mysql_fetch_array($resultu))
+                while($rowu=  mysqli_fetch_array($resultu))
                     {
                     echo "<tr><td>$rowu[2]</td><td>";
                      usersCase($rowu);
@@ -111,16 +111,16 @@ function usersCase($userid)
 function Cases($cases){
     
     //echo $cases."ogolcho";
-    if(!mysql_query($cases))
+    if(!mysqli_query($con,$cases))
     {
         echo mysql_error();
     }
-       $result=mysql_query($cases);
+       $result=mysqli_query($con,$cases);
        
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         $casedetailsn="select * from caselist where caseid='$row[0]'";
-        $results=  mysql_query($casedetailsn);
-        $rows=  mysql_fetch_array($results);
+        $results=  mysqli_query($con,$casedetailsn);
+        $rows=  mysqli_fetch_array($results);
         if($sw==0)
         {
             $sw=1;
@@ -150,25 +150,25 @@ function Cases($cases){
 }
 function getCreateTime($id){
    $sql="SELECT date FROM `actions` where actionperformed='create' and caseid=$id";
-   $result=  mysql_query($sql);
-   $row=  mysql_fetch_array($result);
+   $result=  mysqli_query($con,$sql);
+   $row=  mysqli_fetch_array($result);
    return $row[0];
 }
 function getResolveTime($id){
    $sql="SELECT date FROM `actions` where actionperformed='Resolve' and caseid=$id";
-   $result=  mysql_query($sql);
-   $row=  mysql_fetch_array($result);
+   $result=  mysqli_query($con,$sql);
+   $row=  mysqli_fetch_array($result);
    return $row[0];
 }
 function getAsignmentTime($id){
    $sql="SELECT date FROM `actions` where actionperformed='Assign' and caseid=$id";
-   $result=  mysql_query($sql);
-   $row=  mysql_fetch_array($result);
+   $result=  mysqli_query($con,$sql);
+   $row=  mysqli_fetch_array($result);
    return $row[0];
 }
 function getCloseTime($id){
    $sql="  SELECT `dateOfconformation FROM `closeReport' where caseid=$id";
-   $result=  mysql_query($sql);
-   $row=  mysql_fetch_array($result);
+   $result=  mysqli_query($con,$sql);
+   $row=  mysqli_fetch_array($result);
    return $row[0];
 }

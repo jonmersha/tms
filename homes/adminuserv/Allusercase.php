@@ -2,15 +2,15 @@
 require_once("../../config/index.php");
 
     $allusers="select * from users";
-    $resultuser=  mysql_query($allusers);
+    $resultuser=  mysqli_query($con,$allusers);
     echo"<table width='1000'>";
-    while($row=  mysql_fetch_array($resultuser)){//feach users from user table while there is a users in usaes  table 
+    while($row=  mysqli_fetch_array($resultuser)){//feach users from user table while there is a users in usaes  table 
     echo"<tr id=heads><td>"
         . "<table><tr><td><b>$row[2] $row[3] : </b></td>";
     $casecount="select count(CaseId) from AssignedCase where userId=$row[0] and casestatus=0";
-    $resultcount=  mysql_query($casecount);//count cases assinrd to given users and the cases which is not resolved
+    $resultcount=  mysqli_query($con,$casecount);//count cases assinrd to given users and the cases which is not resolved
     
-    $countrow=mysql_fetch_array($resultcount);
+    $countrow=mysqli_fetch_array($resultcount);
     if($countrow[0]==0){
         $rowc="<td>No Active case</td><td></td></tr></table></td></tr>";
     }
@@ -20,7 +20,7 @@ require_once("../../config/index.php");
     }
     echo $rowc;
     $caseid="select caseId from AssignedCase where userId=$row[0] and casestatus=0";
-    $getcaseid=  mysql_query($caseid);//get user id from assined table
+    $getcaseid=  mysqli_query($con,$caseid);//get user id from assined table
     ///////////////////////
     if($countrow[0]==0){
         $rowc="<td>No Active case</td><td></td></tr></table></td></tr>";
@@ -32,18 +32,18 @@ require_once("../../config/index.php");
     . "<table width='800' align=center>"
             . "<tr id=trin align=left >"
             . "<td id=tdh><b>case</b></td><td id=tdh>Title</td><td id=tdh>Opened by</td><td id=tdh>Priority</td></tr>";
-    while($caseresult= mysql_fetch_array($getcaseid))
+    while($caseresult= mysqli_fetch_array($getcaseid))
                 {
         $querycase="select * from caselist where caseid=$caseresult[0]";
-        $result=  mysql_query($querycase);
-        $list=  mysql_fetch_array($result);//selects cases associted with given users
+        $result=  mysqli_query($con,$querycase);
+        $list=  mysqli_fetch_array($result);//selects cases associted with given users
         //select case creator
         $getuser="select * from actions where actionperformed='create' and caseid=$caseresult[0]";
-        $query=  mysql_query($getuser);
-        $actionrow=  mysql_fetch_array($query);
+        $query=  mysqli_query($con,$getuser);
+        $actionrow=  mysqli_fetch_array($query);
         $newquery="select * from users where userid=$actionrow[1]";
-        $results=  mysql_query($newquery);
-        $usersrow=  mysql_fetch_array($results);
+        $results=  mysqli_query($con,$newquery);
+        $usersrow=  mysqli_fetch_array($results);
         //select data of case creation
         if($switches==0)
             {

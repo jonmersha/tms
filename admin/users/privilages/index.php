@@ -1,7 +1,7 @@
 <?php
 require_once '../../../config/index.php';
 $query="select * from users";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $swicher=0;
 echo"<table width=80% ><tr bgcolor=gray><td id=tdh>Name</td><td id=tdh>Team</td></tr>";
 while($row=  mysql_fetch_array($result)){

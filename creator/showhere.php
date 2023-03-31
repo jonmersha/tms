@@ -6,7 +6,7 @@
 require_once("../config/index.php");
 require_once("../function/allfunc.php");
 $query="SELECT * FROM actions where actionperformed='create' and userid='$_GET[user]'";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $caseno=  mysql_num_rows($result);
 if($_GET[status]!='o'){
    $substr="and status='$_GET[status]'";
@@ -16,8 +16,8 @@ else{
 }
 $swich=0;
 $sql="select * from users where userid=$_GET[user]";
-$resultu=  mysql_query($sql);
-$rouser=  mysql_fetch_array($resultu);
+$resultu=  mysqli_query($con,$sql);
+$rouser=  mysqli_fetch_array($resultu);
 echo "total of $caseno Cases created by_$rouser[2] $rouser[3]";
 echo"<td><table width=100% id=tab><tr><td>
             <div  onclick=loadXMLDoc('mainb','creator/listeach.php?status=$rqtype')>$label</div>
@@ -34,13 +34,13 @@ echo"<td><table width=100% id=tab><tr><td>
                 <td id=tdh><b>Status</td>
                 </tr>";
 
-while($row=  mysql_fetch_array($result)){
+while($row=  mysqli_fetch_array($result)){
     $csql="SELECT * FROM `caselist` where (caseid=$row[0] $substr)";
    // echo $csql;
-        $rs=  mysql_query($csql);
+        $rs=  mysqli_query($con,$csql);
         $rownum=  mysql_num_rows($rs);
        if($rownum>0){
-        $crow=  mysql_fetch_array($rs);
+        $crow=  mysqli_fetch_array($rs);
         
     if($swicher==0)
            {

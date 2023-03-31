@@ -18,8 +18,8 @@ $userid=$_GET['userid'];
 $description=$_GET['desc'];
 editeCase($id,$userid,$description);
 $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
-    $caserow=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $caserow=  mysqli_fetch_array($result);
     echo"<table width=100% id=tab>
         <tr align=right><td>
         <table><tr><td onclick=loaddetails('mainb','homes/userhome.php',$id)><div id=button align=center><b>Back</b></div></td>"

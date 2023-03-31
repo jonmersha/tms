@@ -34,7 +34,7 @@ LIMIT 0 , 30";
     . "<tr bgcolor='gray'>"
             . "<td >Caseid</td><td >Title</td><td >Assined time</td><td >Actions</td>"
       . "</tr >";
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
     {
         if($colorSwicher==0){
             $colorSwicher=1;

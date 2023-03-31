@@ -20,7 +20,7 @@ $Asignment=new newcase();
 echo $result=$Asignment->CaseAssignment($_GET[caseid],$_GET[userid], 1 , $con);
 //$dates= date("Y-m-d h:i:s");
               //  $sql="insert into AssignedCase values($_GET[caseid],$_GET[userid],'$dates',1,0)";
-               // if(!mysql_query($sql,$con)){
+               // if(!mysqli_query($con,$sql,$con)){
                // echo mysql_error();}
                // else
                     //{

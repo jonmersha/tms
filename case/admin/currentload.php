@@ -19,12 +19,12 @@ if(!$con){
     echo"<table border=1><tr><td>";
     echo"<table><tr><th>User </th><th>CurrentLoad</th>";
     
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
                 {
          echo "<tr id='trhover2' onclick=getuser('case/admin/userdetailsAss.php','users',$row[0])><td>$row[2]-$row[3]</td>";
      $query1="select count(userId)as CurrentLoad from AssignedCase where( (userid='$row[0]') and (CaseStatus=0)) group by userid";
      $result1=  mysql_query($query1);
-     $row1=  mysql_fetch_array($result1);
+     $row1=  mysqli_fetch_array($result1);
     if($row1)
          echo "<td>$row1[0]</td></tr></a>";
     else
@@ -48,7 +48,7 @@ if(!$con){
     echo "<table><tr><a href='#xmf'><td>CaseTitile</td>"
     . "<td>Description</td><td>CreationTime</td><td>"
             . "Requiester</td></tr>";
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
                 {
         echo"<tr id='trhover2' onclick=getuser('case/admin/casedetailsAss.php','cased',$row[0])><td>$row[1]</td>"
                 . "<td>$row[2]</td><td>$row[4]</td><td>$row[5]</td>"

@@ -4,8 +4,8 @@ require_once("../config/index.php");
 
 function getusers(){
     $sql="select * from users";
-    $result= mysql_query($sql);
-    while($row=  mysql_fetch_array($result)){
+    $result= mysqli_query($con,$sql);
+    while($row=  mysqli_fetch_array($result)){
         echo "<option value=$row[0]> $row[2] $row[3]</option>";
         
     }

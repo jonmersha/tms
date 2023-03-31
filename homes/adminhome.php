@@ -117,8 +117,8 @@ function  loadpage(){
 function getusers(){
     $swicher=1;
     $sql="SELECT * FROM users limit 0,20 ";
-    $result=  mysql_query($sql);
-    while($row=mysql_fetch_array($result)){
+    $result=  mysqli_query($con,$sql);
+    while($row=mysqli_fetch_array($result)){
         if($swicher==0)
         {
         $swicher=1;
@@ -138,8 +138,8 @@ function getprlist(){
     $swicher=0;
     
     $sql="SELECT * FROM `CasePriority`  limit 0,4 ";
-    $result=  mysql_query($sql);
-    while($row=mysql_fetch_array($result)){
+    $result= mysqli_query($con,$sql);
+    while($row=mysqli_fetch_array($result)){
         if($swicher==0)
         {
         $swicher=1;
@@ -159,8 +159,8 @@ function getdeepartment(){
     $swicher=1;
    
     $sql="SELECT * FROM workunit limit 0,4 ";
-    $result=  mysql_query($sql);
-    while($row=mysql_fetch_array($result)){
+    $result=  mysqli_query($con,$sql);
+    while($row=mysqli_fetch_array($result)){
         if($swicher==0)
         {
         $swicher=1;
@@ -182,8 +182,8 @@ function getTeam(){
     $swicher=1;
     
     $sql="SELECT * FROM `usercatagory` limit 0,4 ";
-    $result=  mysql_query($sql);
-    while($row=mysql_fetch_array($result)){
+    $result=  mysqli_query($con,$sql);
+    while($row=mysqli_fetch_array($result)){
        if($swicher==0)
         {
         $swicher=1;

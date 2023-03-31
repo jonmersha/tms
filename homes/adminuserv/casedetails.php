@@ -2,13 +2,13 @@
 //echo "linked well";
 
 require_once("../../config/index.php");
-$con=  mysql_connect($host,$username,$password);
+//$con=  mysqli_connect($host,$username,$password);
 
 if(!$con){
     echo mysql_error();
     
 }
-    mysql_select_db($dbname, $con);
+   // mysqli_select_db($dbname, $con);
     $query=" SELECT  `caselist`.`caseid` ,  `caselist`.`title` ,  `AssignedCase`.`Assignmenttime` 
 FROM caselist
 LEFT JOIN  `AssignedCase` ON  `caselist`.`caseid` =  `AssignedCase`.`CaseId` 
@@ -27,9 +27,9 @@ caselist.caseid ='$_GET[caseid]'
 )
 LIMIT 0 , 30"
 ;
-    $result=  mysql_query($query);
+    $result=  mysqi_query($con,$query);
     echo"<table valign='top'>";
-    while($row=mysql_fetch_array($result))
+    while($row=mysqli_fetch_array($result))
     {
         echo"
     <tr>

@@ -21,8 +21,8 @@ if(!$con)
   
   /*function getid(){
    $caseid ="select count(caseid) as id from DBESupport.caselist";
-    $results=mysql_query($caseid); 
-    $rows=mysql_fetch_array($results);
+    $results=mysqli_query($con,$caseid); 
+    $rows=mysqli_fetch_array($results);
     $row=$rows[0]+1;
     
     if($row<100)
@@ -85,9 +85,9 @@ function getforms($id){
 }
 function getselection($tablename){
     $sql="select * from $tablename";
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $optcat="<option value='0'>Please select one</option>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
     }
     return $optcat;

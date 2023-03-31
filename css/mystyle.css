@@ -1,59 +1,55 @@
-
-
-
-
-
-a:link { color: yellow; text-decoration: none; }
-a:visited { color: white; text-decoration: none; } 
+a:link {
+  color: yellow;
+  text-decoration: none;
+}
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
 a:hover {
-//color: red; 
-//background-color: yellow;
-//text-decoration: none;
-
-} 
+  color: red;
+  background-color: yellow;
+  text-decoration: none;
+}
 a:active {
-    text-decoration:    none;
-    color:              #0000FF;
+  text-decoration: none;
+  color: #0000ff;
 }
 body {
-    //font-family:        sans-serif;
-  //  background:         url(./themes/pmahomme/img/left_nav_bg.png) repeat-y right 0% #f3f3f3;
-    border-right:       1px solid #aaa;
-    color:              #000000;
-    margin:             0;
-    padding:            0;
+  font-family: sans-serif;
+  background: url(./themes/pmahomme/img/left_nav_bg.png) repeat-y right 0%
+    #f3f3f3;
+  border-right: 1px solid #aaa;
+  color: #000000;
+  margin: 0;
+  padding: 0;
 }
-table#tops{
-background-color: black;
+table#tops {
+  background-color: black;
 }
-div#links
-{
-border-style: outset;
-border:2px solid;
-background-color: gray;
-border-radius:15px;
--moz-border-radius:15px; /* Firefox 3.6 and earlier */
-} 
-table#midle{
-background-color: gray;
-border-radius:15px;
-
+div#links {
+  border-style: outset;
+  border: 2px solid;
+  background-color: gray;
+  border-radius: 15px;
+  -moz-border-radius: 15px; /* Firefox 3.6 and earlier */
 }
-table#datas{
-border-radius:15px;
-background-color: #88ccdd;
+table#midle {
+  background-color: gray;
+  border-radius: 15px;
 }
-
-tabel#tr1{
-    background-color: #f3f3f3;
-}
-tabel#tr2{
-    background-color: cadetblue;
-}
-smal{
-    font-size: smaller;
-    color: red;
+table#datas {
+  border-radius: 15px;
+  background-color: #88ccdd;
 }
 
-
-
+tabel#tr1 {
+  background-color: #f3f3f3;
+}
+tabel#tr2 {
+  background-color: cadetblue;
+}
+smal {
+  font-size: smaller;
+  color: red;
+}

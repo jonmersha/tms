@@ -13,7 +13,7 @@ if(!$con){
     $result=  mysql_query($query);
     echo "<table>";
     
-    while($row=mysql_fetch_array($result)){
+    while($row=mysqli_fetch_array($result)){
         echo "<tr><td>CseID</td><td><h1>$row[0]</h1><input type='hidden' value='$row[0]' id='caseid'/></td></tr>";
         echo "<tr><td>CseTitle</td><td>$row[1]</td></tr>";
         echo "<tr><td>CseRequester</td><td>$row[3]</td></tr>";

@@ -3,10 +3,10 @@ require_once '../config/index.php';
 $sql="SELECT * FROM `usercatagory`";
 function getselection($tablename){
     $sql="select * from $tablename";
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $optcat="<option value='selectteam'>Select Team</option>";
     $optcat=$optcat."<option value='All' onclick=optuser('st','managersReport/optteamuser.php')>All</option>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         $optcat=$optcat."<option value='$row[1]' onclick=optuser('st','managersReport/optteamuser.php')>$row[1]</option>";
     }
     return $optcat;

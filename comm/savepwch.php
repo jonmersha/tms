@@ -5,8 +5,8 @@
     //echo $_SESSION['userid'];
     require_once '../config/index.php';
     $query="SELECT * from users where userid=$_SESSION[userid]";
-    $result=  mysql_query($query);
-    $row=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $row=  mysqli_fetch_array($result);
     $password=md5($_GET[oldpassword]);
    if($row[10]==$password) 
        {
@@ -14,7 +14,7 @@
                 {
                     $newpassword=md5($_GET['newPassword']);
                     $query="update users set pass='$newpassword'where userid=$_SESSION[userid]";
-                    if(mysql_query($query))
+                    if(mysqli_query($con,$query))
                         {
                      echo "password changed successfully";
                         }

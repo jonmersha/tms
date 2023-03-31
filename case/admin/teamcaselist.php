@@ -17,7 +17,7 @@ $query="select * from caselist";
 echo"Assin case to selected xxxx xxxxx";
 $result=  mysql_query($query);
 echo"<table><tr><td>Caseid</td>Title<td></td><td>Creation Date</td><td>Requester</td><td>TaskPriority</td></tr>";
-while($row=mysql_fetch_array($result)){
+while($row=mysqli_fetch_array($result)){
 }
 
 

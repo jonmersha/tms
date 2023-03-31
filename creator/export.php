@@ -8,7 +8,7 @@ require_once("../config/index.php");
 require_once("../function/allfunc.php");
 $query="SELECT * FROM actions where actionperformed='create' and userid=$_POST[users]";
 
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $rownumber= mysql_num_rows($result);
 //echo "lalalalaq".$_POST[statuss];
 if($_POST[statuss]=="o"){
@@ -20,19 +20,19 @@ else{
 $swich=0;
 //echo usersCase($_POST[users]);
 $sql="select * from users where userid=$_POST[users]";
-$resultu=  mysql_query($sql);
-$rouser=  mysql_fetch_array($resultu);
+$resultu=  mysqli_query($con,$sql);
+$rouser=  mysqli_fetch_array($resultu);
 $data=array("total of $rownumber Cases created by_$rouser[2] $rouser[3]");
 array_push($data,'caseid_CaseTitile_Team_Department_Requested By_Request time_Assined To_Assignement time_resolved at_case Status');
 
-while($row=  mysql_fetch_array($result)){
+while($row=  mysqli_fetch_array($result)){
     $csql="SELECT * FROM `caselist` where (caseid=$row[0] $substr)";
-     $rs=  mysql_query($csql);
+     $rs=  mysqli_query($con,$csql);
      $rownum=  mysql_num_rows($rs);
      
     
      if($rownum>0){
-         $crow=mysql_fetch_array($rs);
+         $crow=mysqli_fetch_array($rs);
           if($swicher==0)
            {
            $trid='tr1';

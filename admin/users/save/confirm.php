@@ -16,7 +16,7 @@ if(!$con)
   mysql_select_db($dbname, $con);
 $id=$_GET[id];
 $query="update users set confirmed=1 where userid='$id'";
-if(!mysql_query($query))
+if(!mysqli_query($con,$query))
 {
     echo mysql_error();
 }

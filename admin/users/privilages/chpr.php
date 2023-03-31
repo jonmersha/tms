@@ -2,13 +2,13 @@
     require_once("../../../config/index.php");
     $uid=$_GET[id];
     $query="SELECT * from users where userid=$uid";
-    $result=  mysql_query($query);
-    $row=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $row=  mysqli_fetch_array($result);
     function getselection($tablename,$team){
                                      $sql1="select * from $tablename";
-                                     $result1=  mysql_query($sql1);
+                                     $result1=  mysqli_query($con,$sql1);
                                      $optcat="<option value=$team>$team</option>";
-                                     while($row1=  mysql_fetch_array($result1)){
+                                     while($row1=  mysqli_fetch_array($result1)){
                                          $optcat=$optcat."<option value='$row1[1]'>$row1[1]</option>";
                                          
                                         }
@@ -19,9 +19,9 @@
     function getselectionn($tablename,$team)
                 {
             $sql1="select * from $tablename ";
-            $result1=  mysql_query($sql1);
+            $result1=  mysqli_query($con,$sql1);
             $optcat="<option value=$team>$team</option>";
-            while($row1=  mysql_fetch_array($result1)){
+            while($row1=  mysqli_fetch_array($result1)){
             $optcat=$optcat."<option value='$row1[0]'>$row1[0]</option>";
                                          
                                        }

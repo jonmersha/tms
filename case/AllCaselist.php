@@ -15,12 +15,12 @@ if(!$con){
 
     mysql_select_db($dbname, $con);
     $query="select * from caselist LIMIT 0, 12";
-    $result=  mysql_query($query);
+    $result=  mysqli_query($con,$query);
     echo"<table valign='top'>"
     . "<tr bgcolor='gray'>"
             . "<td >Caseid</td><td >Title</td><td >Status</td><td >Request date</td><td >Requested by</td><td >Case Opened by</td><td >RQ Departmetn</td><td >catagory</td><td >Actions</td>"
       . "</tr >";
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
     {
         if($colorSwicher==0){
             $colorSwicher=1;

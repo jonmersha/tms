@@ -1,10 +1,10 @@
-<?php
+s<?php
 require_once("../../config/index.php");
 session_start();
 function mycase($rqtype){
     $swicher=0;
    $sql="select caseid,date,userid from actions where actionperformed='create'";
-   $result=  mysql_query($sql);
+   $result=  mysqli_query($con,$sql);
    echo"<table width=95% id=tdt>
                 <tr id=tdt>
                 <td id=tdh width=200><b>Title</b></td>
@@ -13,15 +13,15 @@ function mycase($rqtype){
                 <td id=tdh><b>Department</td>
                 <td id=tdh><b>Team</td></tr>";
    
-while($row=mysql_fetch_array($result))
+while($row=mysqli_fetch_array($result))
        {
     
         $userqery="SELECT f_name,m_name FROM `users`  where userid=$row[2]";
-        $userresult=  mysql_query($userqery);
-        $urow=  mysql_fetch_array($userresult);
+        $userresult=  mysqli_query($con,$userqery);
+        $urow=  mysqli_fetch_array($userresult);
         $csql="SELECT * FROM `caselist` where caseid=$row[0]";
-        $rs=  mysql_query($csql);
-        $crow=  mysql_fetch_array($rs);
+        $rs=  mysqli_query($con,$csql);
+        $crow=  mysqli_fetch_array($rs);
       
     if($rqtype==$crow[3]){
         if($swicher==0){

@@ -9,8 +9,8 @@ $id=$_GET['caseid'];
   
   $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
-    $caserow=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $caserow=  mysqli_fetch_array($result);
     echo"<table width=100% id=tab1>
         
         <tr align=right><td>

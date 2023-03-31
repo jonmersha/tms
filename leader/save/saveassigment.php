@@ -10,8 +10,8 @@ require_once("../../function/allfunc.php");
   CaseAssignment($_GET[caseid],$_GET[userid],$_SESSION['userid']);
   updatecasestatus($caseid,'Assined');
    $query="select * from caselist where caseid=$id";
-    $result=  mysql_query($query);
-    $caserow=  mysql_fetch_array($result);
+    $result=  mysqli_query($con,$query);
+    $caserow=  mysqli_fetch_array($result);
     echo"<table width=100% id=tab>
         <tr align=right><td><table><tr><td >".
         "</td><td onclick=loadXMLDoc('mainb','creator/Alllist.php')>Back</td><td></td>

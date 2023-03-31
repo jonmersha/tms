@@ -7,7 +7,7 @@ $userid=$_GET['userid'];
 //echo "id=".$userid;
 function getCases($st){
     $sql="SELECT * FROM AssignedCase where userId=$_GET[userid] and CaseStatus=$st";
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $rss="<table width=100% >
                 <tr id=tdt>
                 <td id=tdh width=200 ><b>Title</b></td>
@@ -15,7 +15,7 @@ function getCases($st){
                 <td id=tdh><b>Requester</td>
                 <td id=tdh><b>Department</td></tr>";
     $sw=0;
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         if($sw==0)
         {
             $sw=1;
@@ -29,8 +29,8 @@ function getCases($st){
             $id="tr2";
         }
         $Sql="SELECT * FROM `caselist` where `caseid`=$row[0]";
-        $caseres=  mysql_query($Sql);
-        $case=  mysql_fetch_array($caseres);
+        $caseres=  mysqli_query($con,$Sql);
+        $case=  mysqli_fetch_array($caseres);
         
         $rss=$rss."<tr id=$id onclick=loadXMLDoc('mainb','comm/case/detail.php?caseid=$row[0]&source=comm/case/user.php?userid=$_GET[userid]')>
                     <td >$case[1]</td>

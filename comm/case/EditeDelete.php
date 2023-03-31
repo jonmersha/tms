@@ -8,9 +8,9 @@ $_SESSION['path']="comm/case/EditeDelete.php/";
 function mycase($rqtype){
     $swicher=0;
    //$sql="select caseid,date,userid from actions where actionperformed='create'";
-   //$result=  mysql_query($sql);
+   //$result=  mysqli_query($con,$sql);
     $sql="select * from caselist where status='$rqtype' ORDER BY caseid desc";
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
    echo"<table width=95% id=tdt>
                 <tr id=tdt>
                 <td id=tdh><b>CaseID</b></td>
@@ -23,7 +23,7 @@ function mycase($rqtype){
 </tr>";
    
    
-while($row=mysql_fetch_array($result))
+while($row=mysqli_fetch_array($result))
        {
        
     if($rqtype==$row[3]){

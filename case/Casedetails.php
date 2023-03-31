@@ -15,12 +15,12 @@ LEFT JOIN `DBESupport`.`users` ON `caselist`.`openedby` = `users`.`userid`  wher
 
     
    // $query="select * from caselist where(caseid='$_GET[caseid]')";
-    $result=  mysql_query($query);
+    $result=  mysqli_query($con,$query);
     echo"<table valign='top' border='1'>"
     . "<tr bgcolor='gray'>"
             . "<td >Caseid</td><td >Title</td><td >Descreption</td><td >Status</td><td >Request date</td><td >Requested by</td><td >Case Opened by</td><td >RQ Departmetn</td><td >catagory</td><td >Actions</td>"
       . "</tr >";
-    while($row=  mysql_fetch_array($result))
+    while($row=  mysqli_fetch_array($result))
     {
         echo"<tr>"
             . "<td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td><td>$row[4]</td><td>$row[5]</td><td>$row[6]</td><td>$row[7]</td><td>$row[10]</td>"

@@ -3,7 +3,7 @@
 require_once '../../config/index.php';
 if($_GET[id]!=""){
     $query="insert into app_prmision values('$_GET[id]','$_GET[priority]')";
-    if(!mysql_query($query)){
+    if(!mysqli_query($con,$query)){
         $message=  mysql_error();
     }
     
@@ -12,7 +12,7 @@ if($_GET[idd]!="")
     {
     //echo $_GET[idd];
     $sql="delete from app_prmision where pr_name='$_GET[idd]'";
-    if(!mysql_query($sql)){
+    if(!mysqli_query($con,$sql)){
         echo mysql_error();
     }
     
@@ -32,11 +32,11 @@ if($_GET[idd]!="")
 <div><?php echo $message; ?></div><hr>
 <?php
 $query="select * from app_prmision";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $swicher=0;
 echo"<table>
     <tr bgcolor=gray><td>priorityID</td><td>Priority</td><td></td></tr>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         if($swicher==0){
             $swicher=1;
             $id="tr1";

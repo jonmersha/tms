@@ -8,8 +8,8 @@ $team=$_GET[catagory];
     
 if($team=='All'){
     $sql="SELECT `catname` FROM `usercatagory`";
-    $result=  mysql_query($sql);
-    while($row=  mysql_fetch_array($result)){
+    $result=  mysqli_query($con,$sql);
+    while($row=  mysqli_fetch_array($result)){
         $subqcat="Catagory='$row[0]' and";
     skeleton($status,$row[0],$subqcat);
     }
@@ -47,15 +47,15 @@ if($status=="All"){
     $statusac="";
      
     $sqlaction="SELECT CaseId,Assignmenttime FROM `AssignedCase` where CaseStatus=0 and `Assignmenttime` between '$_GET[start]'and '$_GET[endedate]' ORDER BY `AssignedCase`.`CaseId` DESC"; 
-    $result=  mysql_query($sqlaction);
+    $result=  mysqli_query($con,$sqlaction);
     displaylist($result,$subqcat); 
     
     $sqlaction="SELECT caseid,dateOfconformation FROM `closeReport` where `closeReport`.`dateOfconformation` between '$_GET[start]'and '$_GET[endedate]' ORDER BY `closeReport`.`caseid` DESC"; 
-    $result=  mysql_query($sqlaction);
+    $result=  mysqli_query($con,$sqlaction);
     displaylist($result,$subqcat);
     
     $sqlaction="SELECT Caseid,resolvetime FROM `ResolvedReport` where `ResolvedReport`.`Conformationstatus`=0 and resolvetime between '$_GET[start]'and '$_GET[endedate]' ORDER BY `ResolvedReport`.`Caseid` DESC";
-    $result=  mysql_query($sqlaction);
+    $result=  mysqli_query($con,$sqlaction);
     displaylist($result,$subqcat);
     
 }
@@ -63,18 +63,18 @@ if($status=="Assined")
     {
     
     $sqlaction="SELECT CaseId,Assignmenttime FROM `AssignedCase` where CaseStatus=0 and `Assignmenttime` between '$_GET[start]'and '$_GET[endedate]' ORDER BY `AssignedCase`.`CaseId` DESC"; 
-    $result=  mysql_query($sqlaction);
+    $result=  mysqli_query($con,$sqlaction);
     displaylist($result,$subqcat);
     }
 if($status=="Closed"){
     $sqlaction="SELECT caseid,dateOfconformation FROM `closeReport` where `closeReport`.`dateOfconformation` between '$_GET[start]'and '$_GET[endedate]' ORDER BY `closeReport`.`caseid` DESC"; 
-    $result=  mysql_query($sqlaction);
+    $result=  mysqli_query($con,$sqlaction);
     displaylist($result,$subqcat);
     
 }
 if($status=="Resolved"){
     $sqlaction="SELECT Caseid,resolvetime FROM `ResolvedReport` where `ResolvedReport`.`Conformationstatus`=0 and resolvetime between '$_GET[start]'and '$_GET[endedate]' ORDER BY `ResolvedReport`.`Caseid` DESC";
-    $result=  mysql_query($sqlaction);
+    $result=  mysqli_query($con,$sqlaction);
     displaylist($result,$subqcat);
 
 }
@@ -84,8 +84,8 @@ echo "</table>";
 
 function getCreateTime($id){
    $sql="SELECT date FROM `actions` where actionperformed='create'";
-   $result=  mysql_query($sql);
-   $row=  mysql_fetch_array($result);
+   $result=  mysqli_query($con,$sql);
+   $row=  mysqli_fetch_array($result);
    return $row[0];
 }
 function displaylist($result,$subqcat)
@@ -94,12 +94,12 @@ function displaylist($result,$subqcat)
 
 
 $header=0;
-    while($row= mysql_fetch_array($result))
+    while($row= mysqli_fetch_array($result))
         {
          $sql="SELECT * FROM `caselist` where ($subqcat caseid={$row[0]})";
-         $caselist=  mysql_query($sql);
+         $caselist=  mysqli_query($con,$sql);
          $rowcount=  mysql_num_rows($caselist);
-         $caserow=  mysql_fetch_array($caselist);
+         $caserow=  mysqli_fetch_array($caselist);
          
          if($caserow>0){
              if($header==0){

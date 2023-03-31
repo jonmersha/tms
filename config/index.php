@@ -1,23 +1,27 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//session_start();
 $username="tms";
 $password="Tms@123321";
-$dbname="tems";
+$dbname="tms";
 $host="localhost";
-$con=  mysqli($host,$username,$password,3306);
+$con =  mysqli_connect($host,$username,$password);
 
 if(!$con)
     {
     
     echo mysql_error();
    }
-  mysql_select_db($dbname, $con);
+   else{
+    mysqli_select_db($con,$dbname);
+    try {
+        //code...
+        $result=mysqli_query($con,'SELECT * FROM users;');
+        //echo $result;
+    } catch (\Throwable $th) {
+        //throw $th;
+        echo $th;
+    }
+    
+    //echo $result;
+   }
   
-  
-  ///////////////////////////////
+

@@ -4,7 +4,6 @@ require_once("config/index.php");
 if(!isset($_SESSION['loggedin']))
 {
 header("location:login.php");
-
 }
 else{
 
@@ -14,10 +13,13 @@ function logincheck(){
 if(!isset($_SESSION['loggedin']))
 {
 header("location:login.php");
+ echo "loadviews('tab','menu/singelmenu.php')";
+
 
 } 
 else{
-       echo "loadviews('tab','menu/singelmenu.php')";
+      
+    echo "loadviews('tab','menu/singelmenu.php')";
 
     if($_SESSION['Type']=='admin')
     echo "loadXMLDoc('mainb','homes/adminhome.php'),"
@@ -26,13 +28,15 @@ else{
     echo "loadXMLDoc('mainb','homes/creatorhome.php')";
     if($_SESSION['Type']=='leader')
     echo "loadXMLDoc('tab','menu/tmledmenuside.php'),loadXMLDoc('mainb','homes/leaderhome.php'),loadXMLDoc('notif','leader/closerReport.php')";
-    if($_SESSION['Type']=='user')
-    echo "loadXMLDoc('tab','menu/sideusermenu.php'),loadXMLDoc('mainb','homes/userhome.php')"; 
+    if($_SESSION['Type']=='user'){
+        echo 'this is users section';
+        echo "loadXMLDoc('tab','menu/sideusermenu.php'),loadXMLDoc('mainb','homes/userhome.php')"; 
+
+    }
      if($_SESSION['Type']=='manager')
     echo "loadXMLDoc('tab','menu/managers.php'),loadXMLDoc('mainb','comm/managers/Allteamcase.php')"; 
 }
 }
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -55,7 +59,7 @@ else{
                     <table width="100%">
                         <tr>
                             <td><img src="DBElogogolden.gif"/></td><td  align="right" onclick="userdetail('mainb','users/index.php')">
-                                <div id="user">you are loged in as <?php echo $_SESSION[fname]." ".$_SESSION[mname];?></div><a id='user'href="logout.php">Logout</a></td></tr></table></td></tr>
+                                <div id="user">you are loged in as <?php echo $_SESSION["fname"]." ".$_SESSION["mname"];?></div><a id='user'href="logout.php">Logout</a></td></tr></table></td></tr>
        
         <tr height >
             <td>
@@ -77,4 +81,3 @@ else{
     </table>
 </body>
 </html>
-

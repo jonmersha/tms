@@ -5,7 +5,7 @@ require_once '../../function/allfunc.php';
 function getCases($cat,$st){
     
     $sql="SELECT * FROM caselist where Catagory='$cat' and  status='$st' order by caseid desc";// 
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     $rss="<table width=100% >
                 <tr id=tdt>
                 <td id=tdh><b>Case Id</b></td>
@@ -15,7 +15,7 @@ function getCases($cat,$st){
                 <td id=tdh><b>Department</td></tr>";
     
     $sw=0;
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         
         if($sw==0)
         {
@@ -30,7 +30,7 @@ function getCases($cat,$st){
             $id="tr2";
         }
         
-        //$case=  mysql_fetch_array($caseres);
+        //$case=  mysqli_fetch_array($caseres);
         
         $rss=$rss."<tr id=$id onclick=loadXMLDoc('mainb','comm/case/detail.php?caseid=$row[0]&source=comm/managers/Allteamcase.php')>
                     <td >$row[0]</td><td >$row[1]</td>
@@ -47,10 +47,10 @@ function getCases($cat,$st){
 ?>
 <?php
 $query="select catname from usercatagory";
-$result=  mysql_query($query);
-while($row=  mysql_fetch_array($result)){
+$result=  mysqli_query($con,$query);
+while($row=  mysqli_fetch_array($result)){
     $queryteam="SELECT * FROM caselist where Catagory='$row[0]'";
-    $result1=  mysql_query($queryteam);
+    $result1=  mysqli_query($con,$queryteam);
     $rownumber=  mysql_num_rows($result1);
     echo "<table width=100%><tr><td id=tab1>"
     . "<table><tr><td id=tdhl>$row[0] Team:$rownumber Total Cases <td>

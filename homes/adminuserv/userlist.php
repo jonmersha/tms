@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 require_once("../../config/index.php");
-$con=  mysql_connect($host,$username,$password);
+//$con=  mysql_connect($host,$username,$password);
 
 if(!$con)
     {
@@ -15,11 +15,11 @@ if(!$con)
    }
    $colorSwitch=0;
    $serial=1;
-  mysql_select_db($dbname, $con);
+  //mysqli_select_db($con,$dbname);
 $query="select * from users where type='user'";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 echo"<table width='600'><tr bgcolor=yellow><th>No.<th>Name</th><th>F.Name</th><th>UserTeam</th></tr>";
-    while($row=mysql_fetch_array($result)){
+    while($row=mysqli_fetch_array($result)){
         if($colorSwitch==0){
             $colorSwitch=1;
         echo"<tr id='tr1' onclick=loadviews('loc','homes/adminuserv/usercase.php?userid=$row[0]')><th>$serial</th><td>$row[2]</td><td>$row[3]</td><td>$row[5]</td></tr>";

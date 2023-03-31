@@ -4,13 +4,13 @@ require_once '../../function/allfunc.php';
 getCases();
 function getCases(){
     $sql="SELECT * from users where Team='$_GET[catagory]'";
-    $result=  mysql_query($sql);
+    $result=  mysqli_query($con,$sql);
     echo"<div style='overflow:scroll; height:600px;' ><table width=100%><tr><td>";
-    while($users=  mysql_fetch_array($result)){
+    while($users=  mysqli_fetch_array($result)){
         //get case id assine assined to user
        
         $sql1="SELECT CaseId FROM `AssignedCase` where userId=$users[0]";
-         $result1=  mysql_query($sql1); 
+         $result1=  mysqli_query($con,$sql1); 
          echo "<tr id=tdhl><td><b>".$users[2]." ".$users[3]." : ".mysql_num_rows($result1)." Cases</b></td></tr><tr><td  align=right><table width='95%'>";
          echo "<tr id=tdh>
                 <td id=tdh width=200 ><b>Titleaaa</b></td>
@@ -18,12 +18,12 @@ function getCases(){
                 <td id=tdh width=200><b>Requester</td>
                 <td id=tdh><b>Department</td></tr>";
          $sw=0;
-         while($case=  mysql_fetch_array($result1))
+         while($case=  mysqli_fetch_array($result1))
                 {
              
              $sql2="SELECT * FROM caselist where caseid=$case[0]";// 
-             $result2=  mysql_query($sql2);
-             $case1=  mysql_fetch_array($result2);
+             $result2=  mysqli_query($con,$sql2);
+             $case1=  mysqli_fetch_array($result2);
              if($sw==0)
         {
             $sw=1;

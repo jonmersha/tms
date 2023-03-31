@@ -5,11 +5,11 @@ require_once '../../config/index.php';
 if($_GET[order]=='insert'){
 if($_GET[name]!=""){
   $getmaxid="SELECT max(catid) from usercatagory";
-  $maxresult=mysql_query($getmaxid);
-  $rowmax=  mysql_fetch_array($maxresult);
+  $maxresult=mysqli_query($con,$getmaxid);
+  $rowmax=  mysqli_fetch_array($maxresult);
   $idmax=$rowmax[0]+1;
     $query="insert into usercatagory values($idmax,'$_GET[name]')";
-    if(!mysql_query($query)){
+    if(!mysqli_query($con,$query)){
         $message=  mysql_error();
     }
     
@@ -22,7 +22,7 @@ if($_GET[name]!=""){
    if($_GET[order]=='delete'){
       // echo $_GET[order];
     $query="delete from usercatagory where catid=$_GET[id]";
-    if(!mysql_query($query)){
+    if(!mysqli_query($con,$query)){
         echo mysql_error();
    }
    
@@ -40,11 +40,11 @@ if($_GET[name]!=""){
 <div><?php echo $message.$query; ?></div><hr>
 <?php
 $query="select * from usercatagory";
-$result=  mysql_query($query);
+$result=  mysqli_query($con,$query);
 $swicher=0;
 echo"<table  id=tab>
   <tr><td id=tdh>TeamId</td><td id=tdh>TeamName</td><td id=tdh></th></tr></thead><tbody>";
-    while($row=  mysql_fetch_array($result)){
+    while($row=  mysqli_fetch_array($result)){
         if($swicher==0){
             $swicher=1;
             $id="tr1";
