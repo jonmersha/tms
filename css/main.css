@@ -1,0 +1,622 @@
+@CHARSET "UTF-8";
+
+body {
+   // font-family: Arial, Helvetica, sans-serif;
+    color: #3a4f54;
+    background-color: #dfecf1;
+    font-size: small;
+}
+
+a {
+    color: #e33b06;
+}
+
+#wrapper {
+    margin: 100px auto;
+    width: 310px;
+}
+
+#waiting {
+    color: #767676;
+    text-align: center;
+}
+
+fieldset {
+  border-radius:15px;
+    margin-top: 100px;
+    background: #fff;
+   // border: 5px solid red;
+    background-color: #DDDDDD;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+legend {
+    border-radius:15px;
+    background-color: #11aa99;
+    border-top: 5px solid red;
+    border-right: 5px solid #red;
+    border-left: 1px solid #red;
+    font-size: 1.2em;
+    padding: 0px 7px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-radius-topright: 5px;
+}
+
+.inputText {
+    width: 275px;
+}
+
+.success {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    width: 298px;
+    background: #a5e283;
+    border: #337f09 1px solid;
+    padding: 5px;
+}
+
+.error {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    width: 298px;
+    background: #ea7e7e;
+    border: #a71010 1px solid;
+    padding: 5px;
+}
+#tablemain{
+	width:100%;
+	height:100%;
+	valign:top;
+	align:center;
+	border-radius: 5px 5px 5px 5px;
+	 border-collapse: collapse;
+	 padding:0;
+	 border-spacing: 0;
+}
+#topf{
+	width:60%;
+	height:60%;
+	valign:top;
+	align:center;
+	border-radius: 5px 5px 5px 5px;
+        background-color: #4b545f;
+	//border-collapse: collapse;
+	//padding:0;
+	//border-spacing: 0;
+}
+#topinternal{
+	width:100%;
+	height:100%;
+	valign:top;
+	align:center;
+	border-radius: 5px 5px 5px 5px;
+        //background-color: red;
+        //border-style: solid;
+	 //border-collapse: collapse;
+	 //padding:0;
+	 //border-spacing: 0;
+}
+
+#tdhead{
+	background:orange;
+	width:60%;
+	height:30px;
+	valign:top;
+	color:white;
+ 	align:right;
+	border-radius: 5px 5px 0 0;
+	 border-collapse: collapse;
+	 padding:0;
+	 border-spacing: 0;
+}
+#tdbot{
+	background:orange;
+	width:60%;
+	height:30px;
+	valign:top;
+	color:white;
+ 	align:right;
+	border-radius: 0 0 5px 5px ;
+	 border-collapse: collapse;
+	 padding:0;
+	 border-spacing: 0;
+}
+#internal{
+	background:gray;
+	width:100%;
+	valign:top;
+	color:white;
+ 	border-collapse: collapse;
+ 	padding:0;
+ 	border-spacing: 0;
+
+}
+
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+#user{
+    
+        background:orange;
+	height:60px;
+        width: 100%;
+	color:white;
+	border-radius: 10px 10px 10px 10px ;    
+}
+#tra:hover{
+    background:orange;
+	color:white;
+}
+#tra{
+    background:white;
+	color:#123457;
+}
+select{
+    width: 150px;
+    height: 15px;
+    font-size: 10px;
+    border-radius: 5px 5px 5px 5px ;
+    border-style: solid;
+    background-color:#FFCC99;
+    alignment-adjust:central;
+   
+}
+input{
+   // width:150px;
+   // height: 10px;
+    //font-size: 10px;
+    border-radius: 5px 5px 5px 5px ;
+    background-color:#FFCC99;
+      border-style: solid;
+   border-color: #141414;
+   // border-width: 1px;
+   // alignment-adjust:central;
+    
+}
+button{
+    //width: 100px;
+   // height: 20px;
+    //font-size: 10px;
+   // border-radius: 10px 10px 10px 10px ;
+    background-color: #CCFFCC;  
+    //alignment-adjust:central;
+    
+}
+#button:hover{
+    background-color: RED;
+    
+}
+#divid{
+    border-radius: 10px 10px 10px 10px ;
+    background-color: #CCFFCC;
+    border-style: solid;
+    border-width: 1px;
+    alignment-adjust:central;
+    width: 200px;
+}
+textArea{
+    width: 200px;
+    //height: 10px;
+    font-size: 10px;
+    border-radius: 5px 5px 5px 5px ;
+    background-color:#FFCC99;
+    border-style: solid;
+    border-color: #141414;
+    border-width: 1px;
+    
+    
+}
+h1{
+    font-family: inherit;
+    font-size: 20px;
+    text-decoration-color: #0000FF;
+}
+
+table#tops{
+background-color: black;
+}
+div#links
+{
+border-style: outset;
+border:2px solid;
+background-color: gray;
+border-radius:15px;
+-moz-border-radius:15px; /* Firefox 3.6 and earlier */
+} 
+table#midle{
+background-color: gray;
+border-radius:15px;
+
+}
+t
+html {
+    font-size:20 ;
+}
+
+input, select, textarea {
+    font-size: 1em;
+}
+
+
+
+a img {
+    border: 0;
+}
+
+
+
+ul {
+    margin:0;
+}
+
+form {
+    margin:             0;
+    padding:            0;
+    display:            inline;
+}
+
+select#select_server,
+select#lightm_db {
+    width:              100%;
+}
+
+/* buttons in some browsers (eg. Konqueror) are block elements,
+   this breaks design */
+button {
+    display:            inline;
+}
+
+/******************************************************************************/
+/* classes */
+
+.navi_dbName {
+    font-weight:    bold;
+    color:          #0000FF;
+}
+
+/******************************************************************************/
+/* specific elements */
+
+div#pmalogo {
+    }
+
+div#recentTableList {
+    text-align: center;
+    margin: 20px 10px 0px 10px;
+}
+
+div#recentTableList select {
+    width: 100%;
+}
+
+div#pmalogo,
+div#leftframelinks,
+div#databaseList {
+    text-align:         center;
+    margin:             5px 10px 0px 10px;
+}
+
+ul#databaseList {
+    margin: 0.8em 0px;
+    padding-bottom:     0.5em;
+    padding-left:     0.3em;
+    font-style: italic;
+}
+
+ul#databaseList span {
+    padding: 5px;
+}
+
+ul#databaseList a {
+    color: #333;
+    background: url(./themes/pmahomme/img/database.png) no-repeat 0 5px transparent;
+    display: block;
+    text-indent: 0;
+    padding: 5px 5px 5px 25px;
+    font-style: normal;
+}
+
+div#navidbpageselector {
+    margin: 0.1em;
+    text-align: center;
+}
+
+div#navidbpageselector a,
+div#navidbpageselector select{
+    color: #333;
+    margin: 0.2em;
+}
+
+ul#databaseList ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul#databaseList li {
+    list-style: none;
+    text-indent: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+ul#databaseList a:hover {
+    background-color: #e4e4e4;
+}
+
+ul#databaseList li.selected a {
+    background: #FFCC99;
+    color: #000000;
+}
+
+div#leftframelinks .icon {
+    padding:            0;
+    margin:             0;
+}
+
+div#reloadlink a img,
+div#leftframelinks a img.icon {
+    margin:        0.3em;
+    margin-top:    0.7em;
+    border:        0;
+}
+
+div#leftframelinks a:hover img {
+
+}
+
+/* serverlist */
+
+
+div#left_tableList {margin:10px 10px 0 10px;}
+div#left_tableList ul {
+    list-style-type:    none;
+    list-style-position: outside;
+    margin:             0;
+    padding:            0;
+}
+
+div#left_tableList ul ul {
+    font-size:          100%;
+}
+
+div#left_tableList a {
+    color:              #000000;
+    text-decoration:    none;
+}
+
+div#left_tableList a:hover {
+    background:         #D0DCE0;
+    color:              #000000;
+    text-decoration:    underline;
+}
+
+div#left_tableList li {
+    margin:             0;
+    padding:            2px 0;
+    white-space:        nowrap;
+}
+
+#newtable {
+    margin-top: 15px !important;
+}
+
+#newtable a {
+    display: block;
+    padding: 1px;
+    background-image: url(./themes/svg_gradient.php?from=ffffff&to=cccccc);
+background-size: 100% 100%;
+background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cccccc));
+background: -webkit-linear-gradient(top, #ffffff, #cccccc);
+background: -moz-linear-gradient(top, #ffffff, #cccccc);
+background: -ms-linear-gradient(top, #ffffff, #cccccc);
+background: -o-linear-gradient(top, #ffffff, #cccccc);    border: 1px solid #aaa;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
+#newtable li:hover {
+    background: transparent !important;
+}
+
+#newtable a:hover {
+    background-image: url(./themes/svg_gradient.php?from=cccccc&to=dddddd);
+background-size: 100% 100%;
+background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#dddddd));
+background: -webkit-linear-gradient(top, #cccccc, #dddddd);
+background: -moz-linear-gradient(top, #cccccc, #dddddd);
+background: -ms-linear-gradient(top, #cccccc, #dddddd);
+background: -o-linear-gradient(top, #cccccc, #dddddd);}
+
+#newtable li a:hover {
+    text-decoration: none;
+}
+
+select{
+    -moz-border-radius:2px 2px 2px 2px;
+    -moz-box-shadow:0 1px 2px #DDDDDD;
+    border:1px solid #aaa;
+    color:#333333;
+    padding:3px;
+    background:url(./themes/pmahomme/img/input_bg.gif);
+}
+
+/* marked items */
+div#left_tableList > ul li.marked > a,
+div#left_tableList > ul li.marked {
+    background: #e4e4e4;
+    color: #000000;
+}
+
+div#left_tableList > ul li:hover > a,
+div#left_tableList > ul li:hover {
+    background:         #e4e4e4;
+    color:              #000000;
+}
+
+div#left_tableList img {
+    padding:            0;
+    vertical-align:     middle;
+}
+
+div#left_tableList ul ul {
+    margin-left:        0;
+    padding-left:       0.1em;
+    border-left:        0.1em solid #000000;
+    padding-bottom:     0.1em;
+    border-bottom:      0.1em solid #000000;
+}
+
+/* for the servers list in navi panel */
+#serverinfo .item {
+    white-space:        nowrap;
+    color:              #000000;
+}
+#serverinfo a:hover {
+    background:         #9999CC;
+    color:              #000000;
+}
+#reloadlink {
+    clear: both;
+    float: right;
+    display: block;
+    padding: 1em;
+}
+
+#NavFilter {
+    display: none;
+}
+
+#clear_fast_filter {
+    background: white;
+    color: black;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 3ex;
+}
+
+#fast_filter {
+    width: 85%;
+    padding: 0.1em;
+}
+
+#fast_filter.gray {
+    color: gray;
+}/* Icon sprites */
+.icon, .footnotemarker {
+    margin:              0 0.3em;
+    padding:             0 !important;
+    width:               16px;
+    height:              16px;
+    background-image:    url('./themes/pmahomme/img/sprites.png') !important;
+    background-repeat:   no-repeat !important;
+    background-position: top left !important;
+}
+
+
+.nivoSlider {
+	position:relative;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0;
+	margin:0;
+	z-index:6;
+	display:none;
+}
+/* The slices and boxes in the Slider */
+.nivo-slice {
+	display:block;
+	position:absolute;
+	z-index:5;
+	height:100%;
+}
+.nivo-box {
+	display:block;
+	position:absolute;
+	z-index:5;
+}
+/* Caption styles */
+.nivo-caption {
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	background:#000;
+	color:#fff;
+	opacity:0.8; /* Overridden by captionOpacity setting */
+	width:100%;
+	z-index:8;
+}
+.nivo-caption p {
+	padding:5px;
+	margin:0;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+	position:absolute;
+	top:45%;
+	z-index:9;
+	cursor:pointer;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
+}
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav a {
+	position:relative;
+	z-index:9;
+	cursor:pointer;
+}
+.nivo-controlNav a.active {
+	font-weight:bold;
+}
+tr{
+   padding:0px;
+}
+
+
+
+

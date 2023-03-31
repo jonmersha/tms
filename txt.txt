@@ -1,0 +1,14 @@
+Warning: mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /opt/lampp/htdocs/tms/creator/list.php on line 17
+
+Warning: session_start() [function.session-start]: Cannot send session cache limiter - headers already sent (output started at /opt/lampp/htdocs/tms/admin/users/privilages/chpr.php:1) in /opt/lampp/htdocs/tms/config/index.php on line 8
+
+Warning: session_start() [function.session-start]: Cannot send session cache limiter - headers already sent (output started at /opt/lampp/htdocs/tms/admin/users/privilages/chpr.php:1) in /opt/lampp/htdocs/tms/config/index.php on line 8
+Warning: mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /opt/lampp/htdocs/tms/creator/list.php on line 17
+Un assigned Cases
+
+Warning: mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /opt/lampp/htdocs/tms/leader/closerReport.php on line 18
+
+Warning: session_start() [function.session-start]: Cannot send session cache limiter - headers already sent (output started at /opt/lampp/htdocs/tms/comm/EditeMyProfile.php:1) in /opt/lampp/htdocs/tms/config/index.php on line 8
+
+
+Warning: session_start() [function.session-start]: Cannot send session cache limiter - headers already sent (output started at /opt/lampp/htdocs/tms/admin/team/index.php:2) in /opt/lampp/htdocs/tms/config/index.php on line 8
