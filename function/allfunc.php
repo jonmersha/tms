@@ -5,6 +5,8 @@ function AssignHistory($con,$id){
      $rowass=  mysqli_fetch_array($result);
      //get case reciver
      //
+     if($rowass[1]=="")
+     return "not Assiengneb Yet";
      $res="select f_name,m_name from users where userid=$rowass[1]";
      $resres=mysqli_query($con,$res);
      if($resres!=Null){
@@ -17,12 +19,17 @@ function AssignHistory($con,$id){
  if($resrow2[0]!="")
      return "<table id=tab> <tr><td><b>Assined to:</b>$resrow2[0] $resrow2[1] by $assrow2[0] $assrow2[1] -ON-> $rowass[2]</td></tr></table>";
  
-}}
+}
+}
+
+
 function ResolveHistory($con,$id){
   $sql="select * from actions where caseid=$id and actionperformed='Resolve'";
     $result=mysqli_query($con,$sql);
      $row=  mysqli_fetch_array($result);
      ////////////////get resolv reporter
+     if($row[1]=="")
+     return "not Resolved";
      $sql2="select f_name,m_name from users where userid=$row[1]";
      $result2=mysqli_query($con,$sql2);
      if($result2!=NUll){
@@ -161,9 +168,13 @@ function CloseHistory($con,$id){
         //echo "close details";
     $query="SELECT * FROM closeReport where caseid=$id";
     $result=  mysqli_query($con,$query);
-    
     $row=  mysqli_fetch_array($result);
+
+if($row[1]=="")
+    return "not Closed";
     $resolver=getuser($con,$row[1]);
+    if($row[2]=="")
+    return "Close Not Confirmed";
     $confirmer=getuser($con,$row[2]);
     
     $rss="<table>"
@@ -231,8 +242,14 @@ function GetReceiver($con,$id){
      $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
      $rowass=  mysqli_fetch_array($result);
+     if($rowass==null)
+     $cr=0;
+     else
+     $cr=$rowass[1];
+
      //get case reciver
-     $res="select f_name,m_name from users where userid=$rowass[1]";
+     $res="select f_name,m_name from users where userid=$cr";
+     //echo "///////".$res."    ";
      $resres=mysqli_query($con,$res);
      $resrow2=  mysqli_fetch_array($resres);
      if($resrow2[0]==""){
@@ -243,24 +260,34 @@ function GetReceiver($con,$id){
     
 }
 function GetReceivertime($con, $id){
-     $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
+    try { 
+    $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
-if($result!=NULL){
-     $rowass=  mysqli_fetch_array($result);
-     //get case reciver
-     
-     $res="select f_name,m_name from users where userid=$rowass[1]";
-     $resres=mysqli_query($con,$res);
-if($resres!=""){
-     $resrow2=  mysqli_fetch_array($resres);
-  if($resrow2[0]!=""){
-     return " $resrow2[0]-$resrow2[1]-at-$rowass[2] ";
-  }
- else {
-      return "Not assigned";
-  }
- }
+    
+     if($result!=NULL){
+            $rowass=  mysqli_fetch_array($result);
+            if($rowass[1]=="")
+            return "Not assigned";
+          
+            $res="select f_name,m_name from users where userid=$rowass[1]";
+           
+            $resres=mysqli_query($con,$res);
+            if($resres!=""){
+            $resrow2=  mysqli_fetch_array($resres);
+            if($resrow2[0]!=""){
+                return " $resrow2[0]-$resrow2[1]-at-$rowass[2] ";
+                     }
+                    else {
+                        return "Not assigned";
+            }
+            }
    } 
+} catch (\Throwable $th) {
+    echo $th; 
+    return $th;
+        
+}
+   
 }
 function getCaseStatus($con,$id){
     $sqlass="SELECT status FROM `caselist` where caseid=$id";
@@ -513,31 +540,30 @@ function deleteCaseAll(){
             }
             
  
-    function GetReceivertimeonly($id){
+    function GetReceivertimeonly($con,$id){
      $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
-if($result!=NULL){
-     $rowass=  mysqli_fetch_array($result);
-     //get case reciver
-     
-     $res="select f_name,m_name from users where userid=$rowass[1]";
-     $resres=mysqli_query($con,$res);
-if($resres!=""){
-     $resrow2=  mysqli_fetch_array($resres);
-  if($resrow2[0]!=""){
-     return "$rowass[2] ";
-  }
- else {
-      return "Not assigned";
-  }
- }
-   } 
-}
+     if($result!=NULL){
+        $rowass=  mysqli_fetch_array($result);
+        $res="select f_name, m_name from users where userid=$rowass[1]";
 
-function getResolvetime($id){
+        $resres=mysqli_query($con,$res);
+        if($resres!=""){
+        $resrow2=  mysqli_fetch_array($resres);
+        if($resrow2[0]!=""){
+        return "$rowass[2] ";
+            }
+        else {
+            return "Not assigned";
+            }
+}
+} 
+        
+    }
+function getResolvetime($con,$id){
     $sql="SELECT *FROM `ResolvedReport` where Caseid=$id";
     $result=  mysqli_query($con,$sql);
-    $rownum=  mysql_num_rows($result);
+    $rownum=  mysqli_num_rows($result);
     if($rownum<1)
         return "Not resolved";
     $row=  mysqli_fetch_array($result);

@@ -1,15 +1,12 @@
 <?php
+try {
+    //code...
+
 require_once("../config/index.php");
 require_once("../function/allfunc.php");
 
 
 $id=$_GET['caseid'];
-if(!$con)
-    {
-    
-    echo mysql_error();
-   }
-  
   $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
     $result=  mysqli_query($con,$query);
@@ -49,14 +46,17 @@ if(!$con)
     <tr align=right><td>
     
     <table><tr>
-        <td onclick=loaddetails('mainb','leader/Editecase.php',$id)><div id=button align=center><b>Edite</b></div></td>"
-            . "<td onclick=loaddetails('mainb','leader/Assigncase.php',$id)><div id=button align=center><b>Assign</td>
+        <td onclick=loaddetails('mainb','leader/Editecase.php',$id)>
+        <div id=button align=center><b>Edite</b></div></td>"
+            . "<td onclick=loaddetails('mainb','leader/Assigncase.php',$id)>
+            <div id=button align=center><b>Assign</td>
                 <td><div id=button align=center><b>Resolve</td><td onclick=loadXMLDoc('mainb','homes/leaderhome.php')><div id=button align=center><b>Cancel</td></tr></table>
    
     
 </th></tr>
 </table>";
         
-        
+} catch (\Throwable $th) {
+echo $th;}
     
     ?>

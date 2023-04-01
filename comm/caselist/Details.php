@@ -1,4 +1,7 @@
 <?php
+try {
+    //code...
+
 require_once("../../config/index.php");
 require_once("../../function/allfunc.php");
 
@@ -39,4 +42,9 @@ require_once("../../function/allfunc.php");
                 <tr></tr></table></td></tr>
     
 </table>";
+
+
+} catch (\Throwable $th) {
+    echo $th;
+}
     ?>

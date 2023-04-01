@@ -1,13 +1,5 @@
 <?php
 require_once("../config/index.php");
-//session_start();
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 function mycase($rqtype){
     $swicher=0;
    $sql="select caseid,date,userid from actions where actionperformed='create'";

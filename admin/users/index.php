@@ -1,6 +1,10 @@
        
 <?php
+try {
+    
+
 require_once("../../config/index.php");
+
   function getselection($con,$tablename){
     $sql="select * from $tablename";
     $result=  mysqli_query($con,$sql);
@@ -9,6 +13,9 @@ require_once("../../config/index.php");
         $optcat=$optcat."<option value='$row[1]'>$row[1]</option>";
     }
 return $optcat;}
+} catch (\Throwable $th) {
+    echo $th;
+}
 ?>
 <table width=80% id="tab1">
         <tr align=right>
@@ -36,7 +43,7 @@ return $optcat;}
                     <table>
                         <tr><td><b>Team </b>
                                 <select id="team">
-                                    <?php echo getselection('usercatagory');?>
+                                    <?php echo getselection($con,'usercatagory');?>
                                 </select>
                             </td></tr>
                          <tr><td><b>Telephone(Mobile)</b><br><input type="text" id="mob"/></td></tr>

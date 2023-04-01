@@ -7,7 +7,8 @@
     $query="SELECT * from users where userid=$uid";
     $result=  mysqli_query($con,$query);
     $row=  mysqli_fetch_array($result);
-    function getselection($tablename,$team){
+    
+    function getselection($con,$tablename,$team){
                                      $sql1="select * from $tablename";
                                      $result1=  mysqli_query($con,$sql1);
                                      $optcat="<option value=$team>$team</option>";
@@ -19,7 +20,7 @@
                                         
                                      }
                                      
-    function getselectionn($tablename,$team)
+    function getselectionn($con,$tablename,$team)
                 {
             $sql1="select * from $tablename ";
             $result1=  mysqli_query($con,$sql1);
@@ -66,7 +67,7 @@
                         <tr><td><b>Team </b>
                                 <select id="team">
                                     <?php
-                                    echo getselection('usercatagory',$row[5]);
+                                    echo getselection($con,'usercatagory',$row[5]);
                                     ?>
                                 </select>
                             </td></tr>

@@ -10,7 +10,7 @@ if($_GET['caseid']!="")
     }
  else {
    // echo "rew selected";
-    if(mysql_num_rows($result)>0)
+    if(mysqli_num_rows($result)>0)
         {
         $row=  mysqli_fetch_array($result);
         if($row[8]==$_GET[team]){
@@ -77,7 +77,7 @@ echo "please add case id ";
     <body>
         
             <div><h2>Case id</h2><input type =text id=caseid name=caseid />
-            <input type="button" value="submit" onclick="changestatus2('mainb','comm/case/change.php','<?php echo $_GET[team];?>')"/></div>
+            <input type="button" value="submit" onclick="changestatus2('mainb','comm/case/change.php','<?php echo $_GET['team'];?>')"/></div>
         
     </body>
 </html>

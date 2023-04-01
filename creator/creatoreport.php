@@ -2,7 +2,7 @@
 
 require_once("../config/index.php");
 
-function getusers(){
+function getusers($con){
     $sql="select * from users";
     $result= mysqli_query($con,$sql);
     while($row=  mysqli_fetch_array($result)){
@@ -19,7 +19,7 @@ function getusers(){
     <tr><td>
     <select id="users" name="users">
     <option value=0> please select users</option>
-    <?php getusers();?>
+    <?php getusers($con);?>
     </select>
 </td>
         <td> 

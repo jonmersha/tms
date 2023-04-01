@@ -1,4 +1,8 @@
 <?php
+
+try {
+    
+
 require_once("../../config/index.php");
 require_once '../../function/allfunc.php';
 
@@ -18,7 +22,7 @@ function mycase($con,$rqtype){
                 <td id=tdh><b>Requested By</td>
                 <td id=tdh><b>Department</td>
                 <td id=tdh><b>Team</td>
-<td id=tdh><b>Assined to</td>                
+                <td id=tdh><b>Assined to</td>                
 </tr>";
    
 while($row=mysqli_fetch_array($result))
@@ -50,11 +54,16 @@ while($row=mysqli_fetch_array($result))
             . "<td>$crow[4]</td>"
             . "<td>$crow[5]</td>"
             . "<td>$crow[8]</td>"
-            . "<td>".  GetReceivertime($con,$crow[0])."</td></tr>";
+            . "<td>".GetReceivertime($con,$crow[0])."</td></tr>";
 }
     }
     echo"</table>";
 }
+
+} catch (\Throwable $th) {
+    echo $th;
+}
+
 
 ?>
 <table width=100%  id=tab1><tr>
@@ -72,7 +81,7 @@ while($row=mysqli_fetch_array($result))
             
             <div  align='left' id='closed' onclick="loadXMLDoc('closed','comm/caselist/listeach.php?status=Closed')"><a id=tr1><b>show Closed</b></a></div>
             
-                <?php  //mycase('Closed');?>
+    
         </td>
 </tr>
 </table>
