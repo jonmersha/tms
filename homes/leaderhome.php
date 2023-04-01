@@ -28,12 +28,12 @@
         
         
         echo"<tr id=tr1 onclick=loaddetails('mainb','leader/Details.php',$row[0])>"
-            ."<td>$row[0]</td><td>$row[1]</td><td>$row[3]</td><td>".$userrow[2]._.$userrow[3]."_on_".$idrow[1]."</td><td>"."$row[4]</td></td><td>$row[7]</td></tr>"; 
+            ."<td>$row[0]</td><td>$row[1]</td><td>$row[3]</td><td>".$userrow[2].'_'.$userrow[3]."_on_".$idrow[1]."</td><td>"."$row[4]</td></td><td>$row[7]</td></tr>"; 
         }
         else{
             $colorSwicher=0;
              echo"<tr id=tr2 onclick=loaddetails('mainb','leader/Details.php',$row[0])>"
-            . "<td>$row[0]</td><td>$row[1]</td><td>$row[3]</td><td>".$userrow[2]._.$userrow[3]."_on_".$idrow[1]."</td><td>$row[4]</td></td><td>$row[7]</td></tr>";
+            . "<td>$row[0]</td><td>$row[1]</td><td>$row[3]</td><td>".$userrow[2].'_'.$userrow[3]."_on_".$idrow[1]."</td><td>$row[4]</td></td><td>$row[7]</td></tr>";
             
         }
         

@@ -5,8 +5,6 @@ require_once("../../../function/allfunc.php");
 
 //$con=  mysql_connect($host,$username,$password);
 $id=$_GET['caseid'];
-  session_start();
-  
   $type=$_SESSION['Team'];
     $query="select * from caselist where caseid=$id";
     $result=  mysqli_query($con,$query);
@@ -42,11 +40,11 @@ $id=$_GET['caseid'];
                 <td align=left width=70%>
                     <table id=tdl>
                         <tr><td><h1>$caserow[1]</h1>$caserow[2]</td></tr>
-                         <tr><td >".creator($id)."</td></tr>
-                         <tr><td>".AssignHistory($id)."</td></tr>
-                         <tr><td>".editedby($id)."</td></tr>
-                         <tr><td>".ResolveHistory($id)."</td></tr>
-                         <tr><td>".CloseHistory($id)."</td></tr>
+                         <tr><td >".creator($con,$id)."</td></tr>
+                         <tr><td>".AssignHistory($con,$id)."</td></tr>
+                         <tr><td>".editedby($con,$id)."</td></tr>
+                         <tr><td>".ResolveHistory($con,$id)."</td></tr>
+                         <tr><td>".CloseHistory($con,$id)."</td></tr>
                     </table>
                 </td>
                 </tr>

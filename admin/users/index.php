@@ -1,8 +1,7 @@
        
 <?php
 require_once("../../config/index.php");
-$con=  mysql_connect($host,$username,$password);
-  function getselection($tablename){
+  function getselection($con,$tablename){
     $sql="select * from $tablename";
     $result=  mysqli_query($con,$sql);
     $optcat="<option value='0'>Please select one</option>";

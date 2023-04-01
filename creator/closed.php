@@ -1,7 +1,6 @@
-s<?php
+<?php
 require_once("../config/index.php");
 require_once '../function/allfunc.php';
-session_start();
 $_SESSION['path']="comm/caselist/Alllist.php";
 
 /* 
@@ -11,7 +10,7 @@ $_SESSION['path']="comm/caselist/Alllist.php";
  */
 $mypath="comm/caselist/Details.php?path=comm/caselist/Alllist.php";
 
-function mycase($rqtype){
+function mycase($con,$rqtype){
     $swicher=0;
    $sql="select caseid,date,userid from actions where actionperformed='create' ORDER BY `actions`.`caseid` DESC";
    $result=  mysqli_query($con,$sql);
@@ -55,7 +54,7 @@ while($row=mysqli_fetch_array($result))
             . "<td>$crow[4]</td>"
             . "<td>$crow[5]</td>"
             . "<td>$crow[8]</td>"
-            . "<td>".  GetReceivertime($crow[0])."</td></tr>";
+            . "<td>".  GetReceivertime($con,$crow[0])."</td></tr>";
 }
     }
     echo"</table>";
@@ -64,7 +63,7 @@ while($row=mysqli_fetch_array($result))
 ?>
 <table width=100%  id=tab1><tr>
         <td align="right">
-                <?php  mycase('Closed');?>
+                <?php  mycase($con, 'Closed');?>
         </td>
 </tr>
 </table>

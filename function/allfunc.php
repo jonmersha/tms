@@ -1,5 +1,5 @@
 <?php
-function AssignHistory($id){     
+function AssignHistory($con,$id){     
      $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
      $rowass=  mysqli_fetch_array($result);
@@ -18,7 +18,7 @@ function AssignHistory($id){
      return "<table id=tab> <tr><td><b>Assined to:</b>$resrow2[0] $resrow2[1] by $assrow2[0] $assrow2[1] -ON-> $rowass[2]</td></tr></table>";
  
 }}
-function ResolveHistory($id){
+function ResolveHistory($con,$id){
   $sql="select * from actions where caseid=$id and actionperformed='Resolve'";
     $result=mysqli_query($con,$sql);
      $row=  mysqli_fetch_array($result);
@@ -54,7 +54,7 @@ if($result4!=NULL){
 }
 }
 }
-function creator($id){
+function creator($con,$id){
     $sql="select * from actions where caseid=$id and actionperformed='create'";
     $result=mysqli_query($con,$sql);
      $row=  mysqli_fetch_array($result);
@@ -67,7 +67,7 @@ if($result2!=NULL){
     
 }
 
-function creatorandtime($id){
+function creatorandtime($con,$id){
     $sql="select * from actions where caseid=$id and actionperformed='create'";
     $result=mysqli_query($con,$sql);
      $row=  mysqli_fetch_array($result);
@@ -81,7 +81,7 @@ if($result2!=NULL){
 }
             
 
-function editedby($id){
+function editedby($con,$id){
     $rs="";
     $sql3="SELECT * FROM `caseedite`  where caseid=$id";
     $result3=  mysqli_query($con,$sql3);
@@ -112,7 +112,7 @@ function createCase(){
                 }
                 function action(){}
 
-function copnfirmclose($id){
+function copnfirmclose($con,$id){
     $message= $_GET[desc];
     $performer=$_GET[userid];
     $caseid=$id;
@@ -143,7 +143,7 @@ $row=  mysqli_fetch_array($result);
             return mysql_error ();
  
                }
-function Actionsc($Action,$id,$performer){
+function Actionsc($con,$Action,$id,$performer){
          $dates= date("Y-m-d h:i:s");
          $query="insert into actions values($id,'$performer','$Action','$dates')";
          if(!mysqli_query($con,$query)){
@@ -156,28 +156,28 @@ function Actionsc($Action,$id,$performer){
      }
      
             }
-function CloseHistory($id){
+function CloseHistory($con,$id){
     
         //echo "close details";
     $query="SELECT * FROM closeReport where caseid=$id";
     $result=  mysqli_query($con,$query);
     
     $row=  mysqli_fetch_array($result);
-    $resolver=getuser($row[1]);
-    $confirmer=getuser($row[2]);
+    $resolver=getuser($con,$row[1]);
+    $confirmer=getuser($con,$row[2]);
     
     $rss="<table>"
             . "<tr><td><b>Reported By</b></td><td>$resolver</td></tr>"
             . "<tr><td><b>Confirmed By</b></td><td>$confirmer at $row[4]</td></tr><tr>"
             . "<td><b>Message On Conformation</b></td><td>$row[3]</td></tr>"
             . "</table>";
-    if(mysql_num_rows($result) < 1){
+    if(mysqli_num_rows($result) < 1){
      $rss="";
     
     }
     return $rss;
         }
-function getuser($uid){
+function getuser($con,$uid){
     $query="SELECT f_name,m_name FROM `users` where userid=$uid";
     $result=  mysqli_query($con,$query);
     if($result!=null){
@@ -186,7 +186,7 @@ function getuser($uid){
     }
     
 }
-function GetCreator($id){
+function GetCreator($con,$id){
    $sql="select * from actions where caseid=$id and actionperformed='create'";
     $result=mysqli_query($con,$sql);
      $row=  mysqli_fetch_array($result);
@@ -198,7 +198,7 @@ if($result2!=NULL){
      return "$row2[0] $row2[1] on $row[3]";}
     
 }
-function GetCreatoronly($id){
+function GetCreatoronly($con,$id){
    $sql="select * from actions where caseid=$id and actionperformed='create'";
     $result=mysqli_query($con,$sql);
 if($result!=NULL){
@@ -212,7 +212,7 @@ if($result!=NULL){
     
 }
 
-function GetAssigner($id){
+function GetAssigner($con,$id){
      $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
      $rowass=  mysqli_fetch_array($result);
@@ -227,7 +227,7 @@ function GetAssigner($id){
  
     
 }
-function GetReceiver($id){
+function GetReceiver($con,$id){
      $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
      $rowass=  mysqli_fetch_array($result);
@@ -242,7 +242,7 @@ function GetReceiver($id){
  
     
 }
-function GetReceivertime($id){
+function GetReceivertime($con, $id){
      $sqlass="SELECT * FROM `AssignedCase` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
 if($result!=NULL){
@@ -262,13 +262,13 @@ if($resres!=""){
  }
    } 
 }
-function getCaseStatus($id){
+function getCaseStatus($con,$id){
     $sqlass="SELECT status FROM `caselist` where caseid=$id";
      $result=  mysqli_query($con,$sqlass);
      $rowass=  mysqli_fetch_array($result);
      return $rowass[0];
 }
-function GetUserCAse($rqtype){
+function GetUserCAse($con,$rqtype){
     $sql="SELECT caseid  from `AssignedCase` where userid={$_SESSION['userid']} and CaseStatus=0";
     if($rqtype=='Resolved'){
         $sql="SELECT caseid  from `AssignedCase` where userid={$_SESSION['userid']} and CaseStatus=1";

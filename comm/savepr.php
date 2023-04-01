@@ -3,7 +3,7 @@ require_once '../config/index.php';
 $sql="select * from users where userid=$_GET[userid]";
 $result=  mysqli_query($con,$sql);
 $sql="delete from PRSet where userid=$_GET[userid] and Prmition='$_GET[pr]'";
-if($_GET[rqtype]=='Add')
+if($_GET['rqtype']=='Add')
     {
     $sql="insert into PRSet values($_GET[userid],'$_GET[pr]')";  
     
@@ -61,7 +61,7 @@ if(!mysqli_query($con,$sql))
                             
                           
                             
-                            if(mysql_num_rows($results)<1)
+                            if(mysqli_num_rows($results)<1)
                                 {
                                 if($sw==0){
                                     $tr="tr1";

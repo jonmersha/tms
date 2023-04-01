@@ -1,17 +1,12 @@
 <?php
 require_once("../../config/index.php");
 require_once '../../function/allfunc.php';
-session_start();
-$_SESSION['path']="comm/caselist/Alllist.php";
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//session_start();
+$_SESSION['path']="comm/caselist/Alllist.php";
 $mypath="comm/caselist/Details.php?path=comm/caselist/Alllist.php";
 
-function mycase($rqtype){
+function mycase($con,$rqtype){
     $swicher=0;
    $sql="select caseid,date,userid from actions where actionperformed='create' ORDER BY `actions`.`caseid` DESC";
    $result=  mysqli_query($con,$sql);
@@ -55,7 +50,7 @@ while($row=mysqli_fetch_array($result))
             . "<td>$crow[4]</td>"
             . "<td>$crow[5]</td>"
             . "<td>$crow[8]</td>"
-            . "<td>".  GetReceivertime($crow[0])."</td></tr>";
+            . "<td>".  GetReceivertime($con,$crow[0])."</td></tr>";
 }
     }
     echo"</table>";
@@ -66,13 +61,13 @@ while($row=mysqli_fetch_array($result))
         <td align="right">
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Not Assined')"><a id=tr1><b>Un assigned Case</b></a></div>
             
-                <?php  mycase('Not Assined');?>
+                <?php  mycase($con,'Not Assined');?>
             
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Assined')"><a id=tr1><b>Active Case</b></a></div>
-                <?php  mycase('Assined');?>
+                <?php  mycase($con,'Assined');?>
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Resolved')"><a id=tr1><b>Resolved Case</b></a></div>
             
-                <?php  mycase('Resolved');?>
+                <?php  mycase($con,'Resolved');?>
             
             
             <div  align='left' id='closed' onclick="loadXMLDoc('closed','comm/caselist/listeach.php?status=Closed')"><a id=tr1><b>show Closed</b></a></div>

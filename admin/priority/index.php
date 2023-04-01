@@ -6,7 +6,7 @@ require_once '../../config/index.php';
      $maxresult=mysqli_query($con,$getmaxid);
      $rowmax=  mysqli_fetch_array($maxresult);
      $idmax=$rowmax[0]+1;
-     if($_GET[order]=="insert"){
+     if($_GET['order']=="insert"){
 if($_GET[name]!=""){
     
     
@@ -15,7 +15,7 @@ if($_GET[name]!=""){
         $message=  mysql_error();
     }
      }}
-if($_GET[order]=="delete")
+if($_GET['order']=="delete")
 {
     $query="delete from CasePriority where id=$_GET[prid]";
     if(!mysqli_query($con,$query)){

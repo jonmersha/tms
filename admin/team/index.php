@@ -2,8 +2,8 @@
  <?php
 require_once '../../config/index.php';
 ///echo $_GET[order];
-if($_GET[order]=='insert'){
-if($_GET[name]!=""){
+if($_GET['order']=='insert'){
+if($_GET['name']!=""){
   $getmaxid="SELECT max(catid) from usercatagory";
   $maxresult=mysqli_query($con,$getmaxid);
   $rowmax=  mysqli_fetch_array($maxresult);
@@ -19,7 +19,7 @@ if($_GET[name]!=""){
 }
 
     }
-   if($_GET[order]=='delete'){
+   if($_GET['order']=='delete'){
       // echo $_GET[order];
     $query="delete from usercatagory where catid=$_GET[id]";
     if(!mysqli_query($con,$query)){

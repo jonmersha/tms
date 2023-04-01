@@ -54,7 +54,7 @@ $result=  mysqli_query($con,$sql);
                             
                           
                             
-                            if(mysql_num_rows($results)<1)
+                            if(mysqli_num_rows($results)<1)
                                 {
                                 if($sw==0){
                                     $tr="tr1";

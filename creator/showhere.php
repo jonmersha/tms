@@ -7,9 +7,9 @@ require_once("../config/index.php");
 require_once("../function/allfunc.php");
 $query="SELECT * FROM actions where actionperformed='create' and userid='$_GET[user]'";
 $result=  mysqli_query($con,$query);
-$caseno=  mysql_num_rows($result);
-if($_GET[status]!='o'){
-   $substr="and status='$_GET[status]'";
+$caseno=  mysqli_num_rows($result);
+if($_GET['status']!='o'){
+   $substr="and status=$_GET[status]";
 }
 else{
     $substr="";
@@ -38,7 +38,7 @@ while($row=  mysqli_fetch_array($result)){
     $csql="SELECT * FROM `caselist` where (caseid=$row[0] $substr)";
    // echo $csql;
         $rs=  mysqli_query($con,$csql);
-        $rownum=  mysql_num_rows($rs);
+        $rownum=  mysqli_num_rows($rs);
        if($rownum>0){
         $crow=  mysqli_fetch_array($rs);
         

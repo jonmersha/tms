@@ -1,13 +1,13 @@
 <?php
 require_once '../config/index.php';
 require_once '../function/allfunc.php';
-function  loadpage(){
+function  loadpage($con){
     //echo"loadviews('loc','../homes/adminuserv/Allusercase.php')'";
     
 }
 ?>
 <html>
-    <body  onload=<?php loadpage(); ?>>
+    <body  onload=<?php loadpage($con); ?>>
 <table width=100% align="center">
     
      <tr>
@@ -24,7 +24,7 @@ function  loadpage(){
                                             <td><div style="overflow:scroll; height:200px;" >
                                                 <table width=100% id="tdt">
                                                 <tr id="tdt"><td id="tdh"><b>User Name</b></td><td id="tdh">Last Name</td><td id="tdh">Team</td><td id="tdh">Privilege</td></tr>
-                                                <?php echo getusers();?>
+                                                <?php echo getusers($con);?>
                                                 </table>
                                                 </div>
                                             </td>
@@ -45,7 +45,7 @@ function  loadpage(){
                                                 <div style="overflow:scroll; height:200px;" >
                                                 <table width='100%' id="tdt">
                                                 <tr id="tdt"><td id="tdh">Cod</td><td id="tdh">Name</td><td id="tdh">location</td><td id="tdh">Extension</td></tr>
-                                                <?php echo getdeepartment();?>
+                                                <?php echo getdeepartment($con);?>
                                                 </table>
                                                 </div>
                                             </td>
@@ -73,7 +73,7 @@ function  loadpage(){
                                             <td><div style="overflow:scroll; height:200px;" >
                                                 <table width='100%'>
                                                     <b><tr id="tdt"><td id="tdh">ID</td><td id="tdh">Priority</td></tr></b>
-                                                <?php echo getprlist();?>
+                                                <?php echo getprlist($con);?>
                                                 </table>
                                                 </div>
                                             </td>
@@ -94,7 +94,7 @@ function  loadpage(){
                                                 <div style="overflow:scroll; height:200px;" >
                                                 <table width='100%' id="tdt">
                                                 <tr id="tdt"><td id="tdh">ID</td><td id="tdh">Team Name</td></tr>
-                                                <?php echo getTeam();?>
+                                                <?php echo getTeam($con);?>
                                                 </table>
                                                 </div>
                                             </td>
@@ -114,7 +114,7 @@ function  loadpage(){
 </body>
 </html>
 <?php
-function getusers(){
+function getusers($con){
     $swicher=1;
     $sql="SELECT * FROM users limit 0,20 ";
     $result=  mysqli_query($con,$sql);
@@ -134,7 +134,7 @@ function getusers(){
     }
     return $rss;
 }
-function getprlist(){
+function getprlist($con){
     $swicher=0;
     
     $sql="SELECT * FROM `CasePriority`  limit 0,4 ";
@@ -155,7 +155,7 @@ function getprlist(){
     }
     return $rss;
 }
-function getdeepartment(){
+function getdeepartment($con){
     $swicher=1;
    
     $sql="SELECT * FROM workunit limit 0,4 ";
@@ -178,7 +178,7 @@ function getdeepartment(){
     
 }
 //////////////////////////////////////Team
-function getTeam(){
+function getTeam($con){
     $swicher=1;
     
     $sql="SELECT * FROM `usercatagory` limit 0,4 ";

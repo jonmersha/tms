@@ -3,16 +3,14 @@
   // require_once("../../..case/classes/newcase.php");
    require_once("../../../config/index.php");
    require_once("../../../function/allfunc.php");
-$con=  mysql_connect($host,$username,$password);
-session_start();
 
   
 
   $id=$_GET['caseid'];
   
-getforms($id);
+getforms($con,$id);
        
-function getforms($id){
+function getforms($con,$id){
     $sql="select * from caselist where caseid=$id";
     $result=  mysqli_query($con,$sql);
     $row=  mysqli_fetch_array($result);
@@ -28,16 +26,16 @@ function getforms($id){
                             <label><h1>".$id."</h1></label>
                             <label>Priority</label><br/>
                             <select id='pr'><option value='$row[7]'>$row[7]</option>".
-                                    getselection('CasePriority').
+                                    getselection($con,'CasePriority').
                             "</select><br/>
                             <label>Category</label><br/>
                             <select id='cat' ><option value='$row[8]'>$row[8]</option>"
-                              .getselection('usercatagory').
+                              .getselection($con,'usercatagory').
                              "</select><br/><br/><hr>
                             <div id='divid' align='center'>
                             <label>Service Requester</label><br/><input type='text' id='rq' value=$row[4] /><br/> 
                     <label>Department</label><br/>
-                    <select id='dept'><option value='$row[5]'>$row[5]</option>".getselection('workunit').                
+                    <select id='dept'><option value='$row[5]'>$row[5]</option>".getselection($con,'workunit').                
                             "</select><br/>
                     <label>Extension</label><br/>
                      <input type='text' id='ext' value=$row[6] /><br/><br/></div>
@@ -52,7 +50,7 @@ function getforms($id){
                             <label><b>Case Title</b></label><br/>
                             <input id='caset' type='text' value='$row[1]' /><br/>
                             <label><b>Current Editor:</b>".$_SESSION['name']."</label><br/>
-                                <label><b>Created By:</b>".creatorandtime($id)."</label><br/>
+                                <label><b>Created By:</b>".creatorandtime($con,$id)."</label><br/>
                              <label><h3>Description</h3></label><br/>
                              <textarea cols='30' rows='5' id='cased'>".trim($row[2])."</textarea><br/>
                              
@@ -66,7 +64,7 @@ function getforms($id){
    echo $rs;
 
 }
-function getselection($tablename)
+function getselection($con,$tablename)
                 {
                 $sql="select * from $tablename";
                 $result=  mysqli_query($con,$sql);

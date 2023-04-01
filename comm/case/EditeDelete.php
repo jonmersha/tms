@@ -1,11 +1,10 @@
 <?php
 require_once("../../config/index.php");
 require_once '../../function/allfunc.php';
-session_start();
 $_SESSION['path']="comm/case/EditeDelete.php/";
 //$mypath="comm/caselist/Details.php?path=comm/caselist/Alllist.php";
 
-function mycase($rqtype){
+function mycase($con,$rqtype){
     $swicher=0;
    //$sql="select caseid,date,userid from actions where actionperformed='create'";
    //$result=  mysqli_query($con,$sql);
@@ -41,11 +40,11 @@ while($row=mysqli_fetch_array($result))
          
     echo"<tr id=$trid onclick=loaddetails('mainb','comm/case/editDelete/Details.php',$row[0])>"
             . "<td>$row[0]</td><td>$row[1]</td>"
-            . "<td>".creatorandtime($row[0])."</td>"
+            . "<td>".creatorandtime($con,$row[0])."</td>"
             . "<td>$row[4]</td>"
             . "<td>$row[5]</td>"
             . "<td>$row[8]</td>"
-            . "<td>".  GetReceivertime($row[0])."</td></tr>";
+            . "<td>".  GetReceivertime($con,$row[0])."</td></tr>";
 }
     }
     echo"</table>";
@@ -56,13 +55,13 @@ while($row=mysqli_fetch_array($result))
         <td align="right">
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Not Assined')"><a id=tr1><b>Un assigned Case</b></a></div>
             
-                <?php  mycase('Not Assined');?>
+                <?php  mycase($con,'Not Assined');?>
             
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Assined')"><a id=tr1><b>Active Case</b></a></div>
-                <?php  mycase('Assined');?>
+                <?php  mycase($con,'Assined');?>
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Resolved')"><a id=tr1><b>Resolved Case</b></a></div>
             
-                <?php  mycase('Resolved');?>
+                <?php  mycase($con,'Resolved');?>
             
             
             <div  align='left' onclick="loadXMLDoc('mainb','comm/caselist/listeach.php?status=Closed')"><a id=tr1><b>Closed</b></a></div>

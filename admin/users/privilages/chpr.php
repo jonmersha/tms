@@ -1,6 +1,6 @@
     <?php
     require_once("../../../config/index.php");
-    $uid=$_GET[id];
+    $uid=$_GET['id'];
     $query="SELECT * from users where userid=$uid";
     $result=  mysqli_query($con,$query);
     $row=  mysqli_fetch_array($result);

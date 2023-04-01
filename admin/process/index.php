@@ -4,7 +4,7 @@ $getmaxid="SELECT max(cod) from workunit";
   $maxresult=mysqli_query($con,$getmaxid);
   $rowmax=  mysqli_fetch_array($maxresult);
   $idmax=$rowmax[0]+1;
-if($_GET[order]=='insert'){
+if($_GET['order']=='insert'){
     $message="Some fields are empty";
 if($_GET[name]!=""||$_GET[loc]!=""){
   $sql="insert into workunit values($idmax,'$_GET[name]','$_GET[loc]',$_GET[ext])";
@@ -17,7 +17,7 @@ if($_GET[name]!=""||$_GET[loc]!=""){
 }
 
   }
-if($_GET[order]=='delete'){
+if($_GET['order']=='delete'){
     $query="delete from workunit where cod=$_GET[cod]";
     if(!mysqli_query($con,$query)){
     $message= mysql_error();

@@ -1,7 +1,7 @@
 <?php
 require_once '../../config/index.php';
 require_once '../../function/allfunc.php';
-function getCases($st){    
+function getCases($con,$st){    
     $sql="SELECT * FROM caselist where Catagory='$_GET[catagory]' and  status='$st' order by caseid desc";// 
     $result=  mysqli_query($con,$sql);
     $rss="<table width=100% >
@@ -35,7 +35,7 @@ function getCases($st){
         $rss=$rss."<tr id=$id onclick=loadXMLDoc('mainb','comm/case/detail.php?caseid=$row[0]&source=comm/case/team.php?catagory=$_GET[catagory]')>
                     <td >$row[0]</td>
                      <td >$row[1]</td>
-                    <td >".GetCreator($row[0])."</td>
+                    <td >".GetCreator($con,$row[0])."</td>
                     <td >$row[4]</td>
                     <td >$row[5]</td><td >$row[status]</td>
                     
@@ -47,8 +47,8 @@ function getCases($st){
 }
 ?>
 <table width="100%">
-    <tr><td id="tdhl" ><div>Unassigned </div></td><td><?php echo getCases('Not Assined');?></td></tr>
-    <tr><td id="tdhl">Assigned</td><td><p></p><?php echo getCases('Assined');?></td></tr>
-    <tr><td id="tdhl">Resolved</td><td><?php echo getCases('Resolved');?></td></tr>
-    <tr><td id="tdhl">Closed</td><td><?php echo getCases('Closed');?></td></tr>
+    <tr><td id="tdhl" ><div>Unassigned </div></td><td><?php echo getCases($con,'Not Assined');?></td></tr>
+    <tr><td id="tdhl">Assigned</td><td><p></p><?php echo getCases($con,'Assined');?></td></tr>
+    <tr><td id="tdhl">Resolved</td><td><?php echo getCases($con,'Resolved');?></td></tr>
+    <tr><td id="tdhl">Closed</td><td><?php echo getCases($con,'Closed');?></td></tr>
 </table>

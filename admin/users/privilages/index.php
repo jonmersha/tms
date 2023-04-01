@@ -4,7 +4,7 @@ $query="select * from users";
 $result=  mysqli_query($con,$query);
 $swicher=0;
 echo"<table width=80% ><tr bgcolor=gray><td id=tdh>Name</td><td id=tdh>Team</td></tr>";
-while($row=  mysql_fetch_array($result)){
+while($row=  mysqli_fetch_array($result)){
     if($swicher==0){
         $swicher=1;
         $id="tr1";

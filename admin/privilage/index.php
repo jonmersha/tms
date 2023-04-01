@@ -1,14 +1,14 @@
 
  <?php
 require_once '../../config/index.php';
-if($_GET[id]!=""){
+if($_GET['id']!=""){
     $query="insert into app_prmision values('$_GET[id]','$_GET[priority]')";
     if(!mysqli_query($con,$query)){
         $message=  mysql_error();
     }
     
 }
-if($_GET[idd]!="")
+if($_GET['idd']!="")
     {
     //echo $_GET[idd];
     $sql="delete from app_prmision where pr_name='$_GET[idd]'";

@@ -1,9 +1,8 @@
 <?php
 require_once("../config/index.php");
 require_once '../function/allfunc.php';
-session_start();
 $_SESSION['path']="managersReport/list.php";
-function mycase1($rqtype){
+function mycase1($con,$rqtype){
     $swicher=0;
    $sql="select caseid,date from actions";
    $result=  mysqli_query($con,$sql);
@@ -34,12 +33,12 @@ while($row=mysqli_fetch_array($result))
    
     echo"<tr id=$trid onclick=loaddetails('mainb','comm/caselist/Details.php',$row[0])>"
             . "<td>$crow[1]</td>"
-            . "<td>".  GetCreatoronly($crow[0])."</td>"
-            . "<td>".getCasecreateTime($crow[0]) ."</td>"
+            . "<td>".  GetCreatoronly($con,$crow[0])."</td>"
+            . "<td>".getCasecreateTime($con,$crow[0]) ."</td>"
             . "<td>$crow[4]</td>"
             . "<td>$crow[5]</td>"
             . "<td>$crow[8]</td>"
-                . "<td>".  GetReceivertime($crow[0])."</td>"
+                . "<td>".  GetReceivertime($con,$crow[0])."</td>"
             . "</tr>";
 }
     }
@@ -48,7 +47,7 @@ while($row=mysqli_fetch_array($result))
  $swicher=1;   
 }
 function Allcase($rqtype){}
-function mycase($rqtype){
+function mycase($con,$rqtype){
     $swicher=0;
    $sql="select caseid,date,userid from actions where actionperformed='create' ORDER BY `actions`.`caseid` DESC";
    $result=  mysqli_query($con,$sql);
@@ -94,19 +93,19 @@ while($row=mysqli_fetch_array($result))
 <table width=100%><tr>
         <td><table width=100%><tr><td>
             <div  onclick="loadXMLDoc('mainb','creator/listeach.php?status=Not Assined')">Un assigned Cases</div>
-            <?php  mycase('Not Assined');?>
+            <?php  mycase($con,'Not Assined');?>
             </table>
             <table width=100% id=tab><tr><td>
             <div  onclick="loadXMLDoc('mainb','creator/listeach.php?status=Assined')">Active Case</div>
-                <?php  mycase('Assined');?>
+                <?php  mycase($con,'Assined');?>
             </table>
             <table width=100% id=tab><tr><td>
             <div  onclick="loadXMLDoc('mainb','creator/listeach.php?status=Resolved')">Resolved Case</div>
-                <?php  mycase('Resolved');?>
+                <?php  mycase($con,'Resolved');?>
             </table>
             <table width=100% id=tab><tr><td>
             <div  onclick="loadXMLDoc('mainb','creator/listeach.php?status=Closed')">Closed</div>
-                <?php  mycase('Closed');?>
+                <?php  mycase($con,'Closed');?>
             </table>
         </td>
 </tr>

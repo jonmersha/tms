@@ -1,6 +1,6 @@
 <?php
 require_once("../../config/index.php");
-if($_GET[caseid]!="")
+if($_GET['caseid']!="")
 {
     //echo "$_GET[caseid]";
     $query="SELECT * FROM `caselist` where caseid=$_GET[caseid]";

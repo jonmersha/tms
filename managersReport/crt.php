@@ -1,7 +1,7 @@
 <?php
 require_once '../config/index.php';
 $sql="SELECT * FROM `usercatagory`";
-function getselection($tablename){
+function getselection($con,$tablename){
     $sql="select * from $tablename";
     $result=  mysqli_query($con,$sql);
     $optcat="<option value='All'>All</option>";
@@ -11,7 +11,7 @@ function getselection($tablename){
     return $optcat;
 }
 
-                              getselection('usercatagory');
+                              getselection($con,'usercatagory');
                              
 
 ?>
@@ -20,7 +20,7 @@ function getselection($tablename){
     <table> 
         <tr>
             <td>Team</td>
-            <td><select id='cat' ><?php echo getselection('usercatagory');?></select></td>
+            <td><select id='cat' ><?php echo getselection($con,'usercatagory');?></select></td>
             <td>Case Status</td>
             <td><select id="st">
                     <option value="All">All</option>

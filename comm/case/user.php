@@ -5,7 +5,7 @@ require_once '../../function/allfunc.php';
 
 $userid=$_GET['userid'];
 //echo "id=".$userid;
-function getCases($st){
+function getCases($con,$st){
     $sql="SELECT * FROM AssignedCase where userId=$_GET[userid] and CaseStatus=$st";
     $result=  mysqli_query($con,$sql);
     $rss="<table width=100% >
@@ -34,7 +34,7 @@ function getCases($st){
         
         $rss=$rss."<tr id=$id onclick=loadXMLDoc('mainb','comm/case/detail.php?caseid=$row[0]&source=comm/case/user.php?userid=$_GET[userid]')>
                     <td >$case[1]</td>
-                    <td >".GetCreator($row[0])."</td>
+                    <td >".GetCreator($con,$row[0])."</td>
                     <td >$case[4]</td>
                     <td >$case[5]</td>
                     
@@ -46,7 +46,7 @@ function getCases($st){
 }
 ?>
 <table width="100%">
-    <tr><td id="tdhl" ><div >Active</div></td><td><?php echo getCases(0);?></td></tr>
-    <tr><td id="tdhl">Resolved</td><td><p></p><?php echo getCases(1);?></td></tr>
-    <tr><td id="tdhl">Closed</td><td><?php echo getCases(2);?></td></tr>
+    <tr><td id="tdhl" ><div >Active</div></td><td><?php echo getCases($con,0);?></td></tr>
+    <tr><td id="tdhl">Resolved</td><td><p></p><?php echo getCases($con,1);?></td></tr>
+    <tr><td id="tdhl">Closed</td><td><?php echo getCases($con,2);?></td></tr>
 </table>
